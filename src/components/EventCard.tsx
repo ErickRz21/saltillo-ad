@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from "react";
 import { EventType } from "../types/EventType";
-import { format } from "date-fns";
+import useFormatDate from "../hooks/useFormatDate";
 
 interface EventCardProps {
   events: EventType[];
@@ -85,59 +85,62 @@ const EventCard: React.FC<EventCardProps> = ({ events }) => {
         <span className="sr-only">Left</span>
       </button>
       <div
-        className="flex gap-1 overflow-x-auto overflow-y-hidden scroll-smooth cursor-grab 
+        className="flex gap-2 overflow-x-auto overflow-y-hidden scroll-smooth cursor-grab 
         px-10 w-screen snap-center"
         ref={carouselRef}
       >
-        {events.map((event) => (
-          <div
-            key={event.id}
-            className="min-w-[300px] h-[400px] flex flex-col items-center justify-center shadow-md
-             rounded-lg border border-neutral-500 bg-gradient-to-br from-blue-300 to-white"
-          >
-            {event.images && event.images[0] && (
-              <img
-                className="w-full h-full object-cover rounded-t-md"
-                src={event.images[0].url}
-                alt={event.name}
-              />
-            )}
-            <div className="px-5 py-2 w-full">
-              <div className="font-bold text-lg mb-1 text-center text-blue-600">
-                {event.name}
-              </div>
-              <p className="text-gray-700 text-sm text-center">
-                Date:{" "}
-                <span>
-                  {format(new Date(event.dates.start.localDate), "dd/MMM/yyyy")}
-                </span>
-              </p>
-              {event._embedded?.venues && event._embedded.venues[0] && (
-                <p className="text-gray-700 text-sm text-center">
-                  Venue: <span>{event._embedded.venues[0].name}</span>
-                </p>
+        {events.map((event) => {
+          // Destructure localDate and localTime from each event's dates
+          const { localDate, localTime } = event.dates.start;
+          const formattedDate = useFormatDate(localDate, localTime);
+
+          return (
+            <div
+              key={event.id}
+              className="min-w-[325px] h-[400px] flex flex-col items-center justify-center shadow-md
+             rounded-lg bg-gradient-to-br from-blue-300 to-white"
+            >
+              {event.images && event.images[0] && (
+                <img
+                  className="w-full h-full object-cover rounded-t-lg"
+                  src={event.images[0].url}
+                  alt={event.name}
+                />
               )}
-              <p className="text-gray-700 text-sm text-center">
-                Price:{" "}
-                <span>
-                  ${event.priceRanges && event.priceRanges[0].min} - {""}$
-                  {event.priceRanges && event.priceRanges[0].max}
-                </span>
-              </p>
-              <p className="text-right">
-                <a
-                  href={event.url}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="text-sm my-2 border border-blue-600 text-blue-600 px-2 py-1 rounded-md
+              <div className="px-5 py-2 w-full">
+                <div className="font-bold text-lg mb-1 text-center text-blue-600">
+                  {event.name}
+                </div>
+                <p className="text-gray-700 text-sm text-center">
+                  Date: <span>{formattedDate}</span>
+                </p>
+                {event._embedded?.venues && event._embedded.venues[0] && (
+                  <p className="text-gray-700 text-sm text-center">
+                    Venue: <span>{event._embedded.venues[0].name}</span>
+                  </p>
+                )}
+                <p className="text-gray-700 text-sm text-center">
+                  Price:{" "}
+                  <span>
+                    Price: ${event.priceRanges[0].min} - $
+                    {event.priceRanges[0].max} {event.priceRanges[0].currency}
+                  </span>
+                </p>
+                <p className="text-right">
+                  <a
+                    href={event.url}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-sm my-2 border border-blue-600 text-blue-600 px-2 py-1 rounded-md
                 hover:bg-blue-600 hover:text-white duration-200"
-                >
-                  More info
-                </a>
-              </p>
+                  >
+                    More info
+                  </a>
+                </p>
+              </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
       <button
         className="absolute right-5 bg-white text-black opacity-60 hover:opacity-80 duration-300 

@@ -114,28 +114,33 @@ const EventCard: React.FC<EventCardProps> = ({ events }) => {
                 <p className="text-gray-700 text-sm text-center">
                   Date: <span>{formattedDate}</span>
                 </p>
-                {event._embedded?.venues && event._embedded.venues[0] && (
+                {event._embedded?.venues &&
+                  event._embedded.venues.length > 0 && (
+                    <p className="text-gray-700 text-sm text-center">
+                      Venue: <span>{event._embedded.venues[0].name}</span>
+                    </p>
+                  )}
+                {event.priceRanges && event.priceRanges.length > 0 && (
                   <p className="text-gray-700 text-sm text-center">
-                    Venue: <span>{event._embedded.venues[0].name}</span>
+                    Price:{" "}
+                    <span>
+                      ${event.priceRanges[0].min} - ${event.priceRanges[0].max}{" "}
+                      {event.priceRanges[0].currency}
+                    </span>
                   </p>
                 )}
-                <p className="text-gray-700 text-sm text-center">
-                  Price:{" "}
-                  <span>
-                    Price: ${event.priceRanges[0].min} - $
-                    {event.priceRanges[0].max} {event.priceRanges[0].currency}
-                  </span>
-                </p>
                 <p className="text-right">
-                  <a
-                    href={event.url}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="text-sm my-2 border border-blue-600 text-blue-600 px-2 py-1 rounded-md
-                hover:bg-blue-600 hover:text-white duration-200"
-                  >
-                    More info
-                  </a>
+                  {event.url && (
+                    <a
+                      href={event.url}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="text-sm my-2 border border-blue-600 text-blue-600 px-2 py-1 rounded-md
+                      hover:bg-blue-600 hover:text-white duration-200"
+                    >
+                      More info
+                    </a>
+                  )}
                 </p>
               </div>
             </div>

@@ -8,9 +8,9 @@ type EventType = {
 };
 
 // Custom Hook
-const useTicket = (keyword: string) => {
+const useTicket = (keyword?: string) => {
   const [data, setData] = useState<EventType[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
+  const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
 
   // Use import.meta.env for Vite
@@ -27,9 +27,15 @@ const useTicket = (keyword: string) => {
         }
 
         const BASE_URL = 'https://app.ticketmaster.com/discovery/v2/';
-        const response = await fetch(
-          `${BASE_URL}/events?apikey=${API_KEY}&keyword=${keyword}&city=Monterrey&countryCode=MX`
-        );
+        const LAT_LONG = '25.67507,-100.31847'; // Monterrey latitude and longitude
+        const RADIUS = 200; // Radius in kilometers
+
+        // Construct the API URL with or without a keyword
+        const url = `${BASE_URL}/events?apikey=${API_KEY}&latlong=${LAT_LONG}&radius=${RADIUS}&unit=km&countryCode=MX${
+          keyword ? `&keyword=${keyword}` : ""
+        }`;
+
+        const response = await fetch(url);
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
@@ -43,8 +49,17 @@ const useTicket = (keyword: string) => {
       }
     };
 
-    if (keyword) {
+    // If no keyword, fetch all events
+    if (!keyword) {
       fetchEvents();
+    } else {
+      // Debounce implementation
+      const delayDebounce = setTimeout(() => {
+        fetchEvents();
+      }, 500); // Set delay time for debounce (e.g., 500ms)
+
+      // Cleanup function to clear timeout if keyword changes before delay ends
+      return () => clearTimeout(delayDebounce);
     }
   }, [keyword, API_KEY]);
 

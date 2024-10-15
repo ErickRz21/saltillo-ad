@@ -1,13 +1,13 @@
 type PriceRange = {
-  type: string;
+  type?: string; // Make the type property optional
   min: number;
   max: number;
   currency: string;
 };
 
 export type EventType = {
-  url: string | undefined;
-  priceRanges: PriceRange[]; // Use the specific type
+  url?: string;
+  priceRanges?: PriceRange[]; // Make priceRanges optional
   id: string;
   name: string;
   dates: { start: { localDate: string; localTime?: string } };

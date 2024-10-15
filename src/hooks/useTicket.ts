@@ -1,69 +1,70 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 
 type EventType = {
+  url: string | undefined;
   id: string;
   name: string;
-  dates: { start: { localDate: string } };
+  dates: { start: { localDate: string; localTime?: string } };
   _embedded?: { venues: { name: string }[] };
+  images?: { url: string }[];
+  priceRanges?: { min: number; max: number; currency: string }[];
 };
 
-// Custom Hook
-const useTicket = (keyword?: string) => {
+// Custom Hook for fetching events by keyword or genre
+const useTicketEvents = (keyword: string) => {
   const [data, setData] = useState<EventType[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
 
-  // Use import.meta.env for Vite
   const API_KEY = import.meta.env.VITE_TICKETMASTER_API_KEY;
 
-  useEffect(() => {
-    const fetchEvents = async () => {
-      setLoading(true);
-      setError(null);
+  const fetchEvents = useCallback(async () => {
+    if (!keyword || keyword.length < 3) return; // Only fetch if keyword is at least 3 characters
 
-      try {
-        if (!API_KEY) {
-          throw new Error("Missing API Key. Make sure VITE_TICKETMASTER_API_KEY is defined in your .env file.");
-        }
+    setLoading(true);
+    setError(null);
 
-        const BASE_URL = 'https://app.ticketmaster.com/discovery/v2/';
-        const LAT_LONG = '25.67507,-100.31847'; // Monterrey latitude and longitude
-        const RADIUS = 200; // Radius in kilometers
-
-        // Construct the API URL with or without a keyword
-        const url = `${BASE_URL}/events?apikey=${API_KEY}&latlong=${LAT_LONG}&radius=${RADIUS}&unit=km&countryCode=MX${
-          keyword ? `&keyword=${keyword}` : ""
-        }`;
-
-        const response = await fetch(url);
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-
-        const result = await response.json();
-        setData(result._embedded?.events || []);
-      } catch (error: any) {
-        setError(error.message);
-      } finally {
-        setLoading(false);
+    try {
+      if (!API_KEY) {
+        throw new Error("Missing API Key. Make sure VITE_TICKETMASTER_API_KEY is defined in your .env file.");
       }
-    };
 
-    // If no keyword, fetch all events
-    if (!keyword) {
-      fetchEvents();
-    } else {
-      // Debounce implementation
-      const delayDebounce = setTimeout(() => {
-        fetchEvents();
-      }, 500); // Set delay time for debounce (e.g., 500ms)
+      const BASE_URL = 'https://app.ticketmaster.com/discovery/v2/events';
+      const LAT_LONG = '25.67507,-100.31847'; // Monterrey latitude and longitude
+      const RADIUS = 500; // Increase radius in kilometers to get more events
 
-      // Cleanup function to clear timeout if keyword changes before delay ends
-      return () => clearTimeout(delayDebounce);
+      const keywordParam = keyword ? `&keyword=${encodeURIComponent(keyword)}` : '';
+      const url = `${BASE_URL}?apikey=${API_KEY}&latlong=${LAT_LONG}&radius=${RADIUS}&unit=km&countryCode=MX${keywordParam}`;
+
+      const response = await fetch(url);
+      if (!response.ok) {
+        if (response.status === 429) {
+          throw new Error('Too many requests - Rate limit exceeded');
+        }
+        throw new Error('Network response was not ok');
+      }
+
+      const result = await response.json();
+      setData(result._embedded?.events || []);
+    } catch (error: any) {
+      setError(error.message);
+    } finally {
+      setLoading(false);
     }
   }, [keyword, API_KEY]);
 
-  return { data, loading, error };
+  // Debounce the request to reduce API calls when keyword changes
+  useEffect(() => {
+    const debounceTimeout = setTimeout(() => {
+      fetchEvents();
+    }, 500);
+
+    return () => {
+      clearTimeout(debounceTimeout);
+    };
+  }, [fetchEvents]);
+
+  return { data, loading, error, fetchEvents };
 };
 
-export default useTicket;
+export default useTicketEvents;

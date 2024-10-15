@@ -60,13 +60,8 @@ const EventCard: React.FC<EventCardProps> = ({ events }) => {
   }, []);
 
   return (
-    <div className="relative flex items-center w-full pt-10">
-      <button
-        className="absolute left-5 bg-white text-black border border-gray-300 opacity-60 
-        hover:opacity-80 duration-200 rounded-full shadow-lg p-3 cursor-pointer z-10 
-        text-2xl top-1/2 transform -translate-y-1/2 hidden lg:block"
-        onClick={() => scroll("left")}
-      >
+    <div className="relative flex items-center w-screen lg:w-full">
+      <button id="arrow" className="left-5" onClick={() => scroll("left")}>
         <svg
           className="w-4 h-4"
           aria-hidden="true"
@@ -84,9 +79,10 @@ const EventCard: React.FC<EventCardProps> = ({ events }) => {
         </svg>
         <span className="sr-only">Left</span>
       </button>
+
       <div
-        className="flex gap-2 overflow-x-auto overflow-y-hidden scroll-smooth cursor-grab 
-        px-10 w-screen snap-center"
+        className="flex gap-2 overflow-x-auto overflow-y-hidden scroll-smooth cursor-grab
+        w-screen snap-center justify-start px-3 py-2"
         ref={carouselRef}
       >
         {events.map((event) => {
@@ -97,45 +93,53 @@ const EventCard: React.FC<EventCardProps> = ({ events }) => {
           return (
             <div
               key={event.id}
-              className="min-w-[325px] h-[400px] flex flex-col items-center justify-center shadow-md
-             rounded-lg bg-gradient-to-br from-blue-300 to-white"
+              className="min-w-[260px] max-w-[260px] lg:min-w-[325px] lg:max-w-[325px] h-[360px] lg:h-[400px]
+              flex flex-col items-center justify-center shadow-md
+             rounded-xl bg-gradient-to-br from-blue-300 to-white dark:to-black"
             >
               {event.images && event.images[0] && (
                 <img
-                  className="w-full h-full object-cover rounded-t-lg"
+                  className="w-full h-full object-cover rounded-t-xl"
                   src={event.images[0].url}
                   alt={event.name}
                 />
               )}
-              <div className="px-5 py-2 w-full">
-                <div className="font-bold text-lg mb-1 text-center text-blue-600">
+              <div className="px-5 py-1 lg:py-2 w-full">
+                <div className="font-bold text-lg mb-1 text-center text-blue-600 dark:text-white">
                   {event.name}
                 </div>
-                <p className="text-gray-700 text-sm text-center">
+                <p className="text-gray-700 dark:text-white text-sm text-center">
                   Date: <span>{formattedDate}</span>
                 </p>
                 {event._embedded?.venues &&
                   event._embedded.venues.length > 0 && (
-                    <p className="text-gray-700 text-sm text-center">
+                    <p className="text-gray-700 dark:text-white text-sm text-center">
                       Venue: <span>{event._embedded.venues[0].name}</span>
                     </p>
                   )}
                 {event.priceRanges && event.priceRanges.length > 0 && (
-                  <p className="text-gray-700 text-sm text-center">
-                    Price:{" "}
+                  <p className="text-gray-700 dark:text-white text-sm text-center">
                     <span>
-                      ${event.priceRanges[0].min} - ${event.priceRanges[0].max}{" "}
-                      {event.priceRanges[0].currency}
+                      Price: {" "}
+                      {event.priceRanges && event.priceRanges.length > 0 ? (
+                        <>
+                          ${event.priceRanges[0].min} - $
+                          {event.priceRanges[0].max}{" "}
+                          {event.priceRanges[0].currency}
+                        </>
+                      ) : (
+                        <span>Price not available</span>
+                      )}
                     </span>
                   </p>
                 )}
-                <p className="text-right">
+                <p className="text-right my-4 lg:my-4">
                   {event.url && (
                     <a
                       href={event.url}
                       target="_blank"
                       rel="noreferrer"
-                      className="text-sm my-2 border border-blue-600 text-blue-600 px-2 py-1 rounded-md
+                      className="text-base lg:text-sm border-2 border-blue-600 text-blue-600 p-2 rounded-md
                       hover:bg-blue-600 hover:text-white duration-200"
                     >
                       More info
@@ -147,12 +151,7 @@ const EventCard: React.FC<EventCardProps> = ({ events }) => {
           );
         })}
       </div>
-      <button
-        className="absolute right-5 bg-white text-black opacity-60 hover:opacity-80 duration-300 
-        border border-gray-300 rounded-full shadow-lg p-3 cursor-pointer z-10 
-        text-2xl top-1/2 transform -translate-y-1/2 hidden lg:block"
-        onClick={() => scroll("right")}
-      >
+      <button id="arrow" className="right-5" onClick={() => scroll("right")}>
         <svg
           className="w-4 h-4"
           aria-hidden="true"

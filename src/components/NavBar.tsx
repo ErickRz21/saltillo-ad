@@ -57,7 +57,10 @@ const NavBar = () => {
       <div className="container mx-auto flex items-center justify-between px-6 lg:px-0 relative">
         {/* Mobile search and menu toggle */}
         <button
-          onClick={() => setSearchOpen(!searchOpen)}
+          onClick={() => {
+            setSearchOpen(!searchOpen);
+            if (searchOpen) setSearchOpen(false);
+          }}
           className="lg:hidden"
           aria-label="Toggle Search"
         >
@@ -85,7 +88,10 @@ const NavBar = () => {
             <FaUser size={20} />
           </Link>
           <button
-            onClick={() => setSearchOpen(!searchOpen)}
+            onClick={() => {
+              setSearchOpen(!searchOpen);
+              if (searchOpen) setSearchOpen(false);
+            }}
             className="hover:text-neutral-600"
           >
             <FaSearch size={20} />
@@ -99,7 +105,7 @@ const NavBar = () => {
         className={`absolute ${
           searchOpen ? "opacity-100 scale-y-100" : "opacity-0 scale-y-0"
         } my-3 lg:my-2 w-full lg:right-0 lg:w-2/4 h-[34rem] lg:h-[500px] bg-white dark:bg-neutral-900
-        shadow-lg p-4 border dark:border-neutral-800 rounded-3xl z-50 overflow-y-auto transform transition-all duration-500
+        shadow-lg p-4 border dark:border-neutral-800 rounded-3xl z-50 overflow-y-auto transform transition-all duration-200
         ${
           searchOpen
             ? window.innerWidth >= 1024
@@ -120,8 +126,8 @@ const NavBar = () => {
             ref={searchInputRef}
             onChange={(e) => setSearchQuery(e.target.value)}
             onKeyDown={handleEnterKey}
-            className="w-full p-3 mb-1 rounded-2xl bg-gray-100 dark:bg-neutral-800
-            text-black dark:text-white focus:outline-none
+            className="w-full p-3 mb-1 rounded-3xl bg-neutral-100 dark:bg-neutral-800
+            opacity-70 focus:opacity-100 duration-500 text-black dark:text-white focus:outline-none
             font-semibold text-lg"
             placeholder="Search for events..."
           />

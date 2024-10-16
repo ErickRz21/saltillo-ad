@@ -3,11 +3,8 @@ import EventsByGenre from "./EventsGenre";
 
 const Ticket: React.FC = () => {
   return (
-    <div className="container mx-auto">
-      {/* Browse by Genre Section */}
-      <div>
-        <EventsByGenre />
-      </div>
+    <div>
+      <EventsByGenre />
     </div>
   );
 };

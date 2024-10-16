@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { FaBars, FaUser, FaSearch, FaTimes } from "react-icons/fa";
 import useTicketEvents from "../hooks/useTicket";
@@ -9,6 +9,7 @@ const NavBar = () => {
   const [searchOpen, setSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const searchInputRef = useRef<HTMLInputElement>(null);
+  const searchBarRef = useRef<HTMLDivElement>(null);
 
   const {
     data: events,
@@ -29,6 +30,23 @@ const NavBar = () => {
       handleSearch(); // Optionally trigger the search
     }
   };
+
+  const handleClickOutside = (event: MouseEvent) => {
+    if (
+      searchBarRef.current &&
+      !searchBarRef.current.contains(event.target as Node) &&
+      searchOpen
+    ) {
+      setSearchOpen(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [searchOpen]);
 
   return (
     <nav
@@ -77,10 +95,11 @@ const NavBar = () => {
 
       {/* Search Bar for Mobile and Desktop */}
       <div
+        ref={searchBarRef}
         className={`absolute ${
           searchOpen ? "opacity-100 scale-y-100" : "opacity-0 scale-y-0"
         } my-3 lg:my-2 w-full lg:right-0 lg:w-2/4 h-[34rem] lg:h-[500px] bg-white dark:bg-neutral-900
-        shadow-lg p-4 border dark:border-neutral-800 rounded-3xl z-50 overflow-y-auto transform transition-all duration-300
+        shadow-lg p-4 border dark:border-neutral-800 rounded-3xl z-50 overflow-y-auto transform transition-all duration-500
         ${
           searchOpen
             ? window.innerWidth >= 1024
@@ -92,7 +111,6 @@ const NavBar = () => {
         }`}
         style={{
           transformOrigin: window.innerWidth >= 1024 ? "top" : "bottom",
-          transition: "transform 0.3s ease, opacity 0.3s ease",
         }}
       >
         <div className="flex items-center sticky top-0">
@@ -113,7 +131,7 @@ const NavBar = () => {
             type="button"
             onClick={() => {
               setSearchQuery(""); // Clear the search input
-              setSearchOpen(false); // Close the search bar
+              // setSearchOpen(false); // Close the search bar
             }}
             className="absolute right-4 text-neutral-600 dark:text-white focus:outline-none"
             aria-label="Clear search"

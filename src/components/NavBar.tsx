@@ -76,109 +76,122 @@ const NavBar = () => {
       </div>
 
       {/* Search Bar for Mobile and Desktop */}
-      {searchOpen && (
-        <div
-          className="absolute bottom-14 my-3 lg:-my-1 lg:top-20 right-0 w-full lg:w-2/4 h-[34rem] lg:h-[500px] bg-white dark:bg-neutral-900
-          shadow-lg p-4 border dark:border-neutral-800 rounded-3xl transition-all duration-300 z-50 overflow-y-auto"
-        >
-          <div className="flex items-center sticky top-0">
-            <input
-              type="text"
-              value={searchQuery}
-              ref={searchInputRef}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              onKeyDown={handleEnterKey}
-              className="w-full p-3 mb-1 rounded-2xl bg-gray-100 dark:bg-neutral-800
-              text-black dark:text-white focus:outline-none focus:ring-2 focus:ring-lime-500
-              font-semibold text-lg"
-              placeholder="Search for events..."
-            />
+      <div
+        className={`absolute ${
+          searchOpen ? "opacity-100 scale-y-100" : "opacity-0 scale-y-0"
+        } my-3 lg:my-2 w-full lg:right-0 lg:w-2/4 h-[34rem] lg:h-[500px] bg-white dark:bg-neutral-900
+        shadow-lg p-4 border dark:border-neutral-800 rounded-3xl z-50 overflow-y-auto transform transition-all duration-300
+        ${
+          searchOpen
+            ? window.innerWidth >= 1024
+              ? "top-16"
+              : "bottom-14"
+            : window.innerWidth >= 1024
+            ? "top-16"
+            : "bottom-14"
+        }`}
+        style={{
+          transformOrigin: window.innerWidth >= 1024 ? "top" : "bottom",
+          transition: "transform 0.3s ease, opacity 0.3s ease",
+        }}
+      >
+        <div className="flex items-center sticky top-0">
+          <input
+            type="text"
+            value={searchQuery}
+            ref={searchInputRef}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            onKeyDown={handleEnterKey}
+            className="w-full p-3 mb-1 rounded-2xl bg-gray-100 dark:bg-neutral-800
+            text-black dark:text-white focus:outline-none
+            font-semibold text-lg"
+            placeholder="Search for events..."
+          />
 
-            {/* Clear Button */}
-            <button
-              type="button"
-              onClick={() => {
-                setSearchQuery(""); // Clear the search input
-                setSearchOpen(false); // Close the search bar
-              }}
-              className="absolute right-4 text-neutral-600 dark:text-white focus:outline-none"
-              aria-label="Clear search"
-            >
-              <FaTimes size={18} />
-            </button>
-          </div>
-
-          {/* Display Loading, Error, and Search Results */}
-          {loading && <p className="text-center mt-2">Loading...</p>}
-          {error && <p className="text-center text-red-500 mt-2">{error}</p>}
-
-          <div className="mt-3">
-            {events.length > 0 ? (
-              <ul className="space-y-4">
-                {events.map((event) => {
-                  const { localDate, localTime } = event.dates.start;
-                  const formattedDate = useFormatDate(localDate, localTime);
-
-                  return (
-                    <li
-                      key={event.id}
-                      className="bg-white dark:bg-neutral-800 p-5 rounded-3xl border dark:border-neutral-800 shadow-md flex flex-col
-                      lg:flex-row items-center lg:items-start space-y-3 lg:space-y-0 lg:space-x-6"
-                    >
-                      {/* Event Image */}
-                      <div className="w-full lg:w-3/5">
-                        <img
-                          src={event.images?.[0]?.url}
-                          alt={event.name}
-                          className="w-full h-52 lg:h-64 object-cover rounded-2xl border dark:border-neutral-600 shadow"
-                        />
-                      </div>
-
-                      {/* Event Details */}
-                      <div className="w-full lg:w-2/4">
-                        <h3 className="font-bold text-xl lg:text-2xl text-gray-800 dark:text-white mb-2">
-                          {event.name}
-                        </h3>
-                        <p className="text-gray-600 dark:text-gray-300">
-                          <span className="font-semibold">Date:</span>{" "}
-                          {formattedDate || "TBA"}
-                        </p>
-                        <p className="text-gray-600 dark:text-gray-300">
-                          <span className="font-semibold">Venue:</span>{" "}
-                          {event._embedded?.venues[0]?.name || "TBA"}
-                        </p>
-                        <p className="text-gray-600 dark:text-gray-300 mb-2">
-                          <span className="font-semibold">Price:</span>{" "}
-                          {event.priceRanges
-                            ? `${event.priceRanges[0].min} - ${event.priceRanges[0].max} ${event.priceRanges[0].currency}`
-                            : "N/A"}
-                        </p>
-
-                        {/* More Info Button */}
-                        <a
-                          href={event.url}
-                          target="_blank"
-                          rel="noreferrer"
-                          className="inline-block text-sm border-2 border-blue-600 text-blue-600 px-4 py-2 rounded-md
-                          hover:bg-blue-600 hover:text-white transition-colors duration-200"
-                        >
-                          More info
-                        </a>
-                      </div>
-                    </li>
-                  );
-                })}
-              </ul>
-            ) : (
-              !loading && (
-                <p className="text-center text-gray-500 mt-4">
-                  No events found matching your search.
-                </p>
-              )
-            )}
-          </div>
+          {/* Clear Button */}
+          <button
+            type="button"
+            onClick={() => {
+              setSearchQuery(""); // Clear the search input
+              setSearchOpen(false); // Close the search bar
+            }}
+            className="absolute right-4 text-neutral-600 dark:text-white focus:outline-none"
+            aria-label="Clear search"
+          >
+            <FaTimes size={18} />
+          </button>
         </div>
-      )}
+
+        {/* Display Loading, Error, and Search Results */}
+        {loading && <p className="text-center mt-2">Loading...</p>}
+        {error && <p className="text-center text-red-500 mt-2">{error}</p>}
+
+        <div className="mt-3">
+          {events.length > 0 ? (
+            <ul className="space-y-4">
+              {events.map((event) => {
+                const { localDate, localTime } = event.dates.start;
+                const formattedDate = useFormatDate(localDate, localTime);
+
+                return (
+                  <li
+                    key={event.id}
+                    className="bg-white dark:bg-neutral-800 p-5 rounded-3xl border dark:border-neutral-800 shadow-md flex flex-col
+                    lg:flex-row items-center lg:items-start space-y-3 lg:space-y-0 lg:space-x-6"
+                  >
+                    {/* Event Image */}
+                    <div className="w-full lg:w-3/5">
+                      <img
+                        src={event.images?.[0]?.url}
+                        alt={event.name}
+                        className="w-full h-52 lg:h-64 object-cover rounded-2xl border dark:border-neutral-600 shadow"
+                      />
+                    </div>
+
+                    {/* Event Details */}
+                    <div className="w-full lg:w-2/4">
+                      <h3 className="font-bold text-xl lg:text-2xl text-gray-800 dark:text-white mb-2">
+                        {event.name}
+                      </h3>
+                      <p className="text-gray-600 dark:text-gray-300">
+                        <span className="font-semibold">Date:</span>{" "}
+                        {formattedDate || "TBA"}
+                      </p>
+                      <p className="text-gray-600 dark:text-gray-300">
+                        <span className="font-semibold">Venue:</span>{" "}
+                        {event._embedded?.venues[0]?.name || "TBA"}
+                      </p>
+                      <p className="text-gray-600 dark:text-gray-300 mb-2">
+                        <span className="font-semibold">Price:</span>{" "}
+                        {event.priceRanges
+                          ? `${event.priceRanges[0].min} - ${event.priceRanges[0].max} ${event.priceRanges[0].currency}`
+                          : "N/A"}
+                      </p>
+
+                      {/* More Info Button */}
+                      <a
+                        href={event.url}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="inline-block text-sm border-2 border-blue-600 text-blue-600 px-4 py-2 rounded-md
+                        hover:bg-blue-600 hover:text-white transition-colors duration-200"
+                      >
+                        More info
+                      </a>
+                    </div>
+                  </li>
+                );
+              })}
+            </ul>
+          ) : (
+            !loading && (
+              <p className="text-center text-gray-500 mt-4">
+                No events found matching your search.
+              </p>
+            )
+          )}
+        </div>
+      </div>
     </nav>
   );
 };

@@ -17,6 +17,10 @@
   @apply bg-white dark:bg-neutral-800 text-black dark:text-white;
 }
 
+.flex::-webkit-scrollbar {
+  display: none;
+}
+
 body {
   font-family: 'Manrope', sans-serif;
 }

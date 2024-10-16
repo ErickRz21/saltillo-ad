@@ -66,14 +66,12 @@ const NavBar = () => {
         >
           <FaSearch size={25} className="text-black dark:text-white" />
         </button>
-
         <Link
           to="/"
           className="text-xl lg:text-2xl uppercase font-bold text-black dark:text-white"
         >
           Saltillo
         </Link>
-
         <button
           onClick={() => setMenuOpen(!menuOpen)}
           className="lg:hidden"

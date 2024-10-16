@@ -61,28 +61,10 @@ const EventCard: React.FC<EventCardProps> = ({ events }) => {
 
   return (
     <div className="relative flex items-center w-screen lg:w-full">
-      <button id="arrow" className="left-5" onClick={() => scroll("left")}>
-        <svg
-          className="w-4 h-4"
-          aria-hidden="true"
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 14 10"
-        >
-          <path
-            stroke="currentColor"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="2"
-            d="M13 5H1m0 0l4 4M1 5l4-4"
-          />
-        </svg>
-        <span className="sr-only">Left</span>
-      </button>
-
+      {/* Card Scroll div */}
       <div
-        className="flex gap-2 overflow-x-auto overflow-y-hidden scroll-smooth cursor-grab
-        w-screen snap-center justify-start px-3 py-2"
+        className="flex gap-2 overflow-x-auto scroll-smooth cursor-grab
+        w-screen snap-center justify-start mx-auto px-[15.3%] lg:px-3 py-5"
         ref={carouselRef}
       >
         {events.map((event) => {
@@ -91,6 +73,7 @@ const EventCard: React.FC<EventCardProps> = ({ events }) => {
           const formattedDate = useFormatDate(localDate, localTime);
 
           return (
+            // Card Styling 
             <div
               key={event.id}
               className="min-w-[260px] max-w-[260px] lg:min-w-[325px] lg:max-w-[325px] h-[360px] lg:h-[400px]
@@ -105,7 +88,7 @@ const EventCard: React.FC<EventCardProps> = ({ events }) => {
                 />
               )}
               <div className="px-5 py-1 lg:py-2 w-full">
-                <div className="font-bold text-lg mb-1 text-center text-blue-600 dark:text-white">
+                <div className="font-bold text-base lg:text-lg mb-1 text-center text-blue-600 dark:text-white">
                   {event.name}
                 </div>
                 <p className="text-gray-700 dark:text-white text-sm text-center">
@@ -120,7 +103,7 @@ const EventCard: React.FC<EventCardProps> = ({ events }) => {
                 {event.priceRanges && event.priceRanges.length > 0 && (
                   <p className="text-gray-700 dark:text-white text-sm text-center">
                     <span>
-                      Price: {" "}
+                      Price:{" "}
                       {event.priceRanges && event.priceRanges.length > 0 ? (
                         <>
                           ${event.priceRanges[0].min} - $
@@ -151,6 +134,27 @@ const EventCard: React.FC<EventCardProps> = ({ events }) => {
           );
         })}
       </div>
+        
+        {/* Arrow Buttons */}
+      <button id="arrow" className="left-5" onClick={() => scroll("left")}>
+        <svg
+          className="w-4 h-4"
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 14 10"
+        >
+          <path
+            stroke="currentColor"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            d="M13 5H1m0 0l4 4M1 5l4-4"
+          />
+        </svg>
+        <span className="sr-only">Left</span>
+      </button>
+
       <button id="arrow" className="right-5" onClick={() => scroll("right")}>
         <svg
           className="w-4 h-4"

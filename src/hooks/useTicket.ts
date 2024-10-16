@@ -31,7 +31,7 @@ const useTicketEvents = (keyword: string) => {
 
       const BASE_URL = 'https://app.ticketmaster.com/discovery/v2/events';
       const LAT_LONG = '25.67507,-100.31847'; // Monterrey latitude and longitude
-      const RADIUS = 500; // Increase radius in kilometers to get more events
+      const RADIUS = 30; // Increase radius in kilometers to get more events
 
       const keywordParam = keyword ? `&keyword=${encodeURIComponent(keyword)}` : '';
       const url = `${BASE_URL}?apikey=${API_KEY}&latlong=${LAT_LONG}&radius=${RADIUS}&unit=km&countryCode=MX${keywordParam}`;

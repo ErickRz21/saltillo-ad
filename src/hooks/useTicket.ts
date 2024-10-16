@@ -1,14 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
-
-type EventType = {
-  url: string | undefined;
-  id: string;
-  name: string;
-  dates: { start: { localDate: string; localTime?: string } };
-  _embedded?: { venues: { name: string }[] };
-  images?: { url: string }[];
-  priceRanges?: { min: number; max: number; currency: string }[];
-};
+import { EventType } from '../types/EventType';
 
 // Custom Hook for fetching events by keyword or genre
 const useTicketEvents = (keyword: string) => {

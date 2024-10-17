@@ -100,7 +100,7 @@ const NavBar = () => {
               setSearchOpen(!searchOpen);
               if (searchOpen) setSearchOpen(false);
             }}
-            className="hover:text-neutral-600"
+            className="hover:text-neutral-600 duration-300"
           >
             <FaSearch size={20} />
           </button>

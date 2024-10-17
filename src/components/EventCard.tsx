@@ -73,12 +73,12 @@ const EventCard: React.FC<EventCardProps> = ({ events }) => {
           const formattedDate = useFormatDate(localDate, localTime);
 
           return (
-            // Card Styling 
+            // Card Styling
             <div
               key={event.id}
               className="min-w-[260px] max-w-[260px] lg:min-w-[325px] lg:max-w-[325px] h-[360px] lg:h-[400px]
               flex flex-col items-center justify-center shadow-md
-             rounded-xl bg-gradient-to-br from-blue-300 to-white dark:to-black"
+             rounded-xl bg-gradient-to-br from-indigo-300 to-white dark:to-black"
             >
               {event.images && event.images[0] && (
                 <img
@@ -116,19 +116,19 @@ const EventCard: React.FC<EventCardProps> = ({ events }) => {
                     </span>
                   </p>
                 )}
-                <p className="text-right my-4 lg:my-4">
+                <button className="flex justify-end my-3 w-full">
                   {event.url && (
                     <a
                       href={event.url}
                       target="_blank"
                       rel="noreferrer"
-                      className="text-base lg:text-sm border-2 border-blue-600 text-blue-600 p-2 rounded-md
-                      hover:bg-blue-600 hover:text-white duration-200"
+                      className="text-sm border-2 border-blue-600 text-blue-600 px-4 py-2 rounded-md
+                        hover:bg-blue-600 hover:text-white transition-colors duration-200"
                     >
                       More info
                     </a>
                   )}
-                </p>
+                </button>
               </div>
             </div>
           );

@@ -28,9 +28,6 @@ body {
 a {
   @apply text-sm lg:text-lg font-semibold text-black dark:text-white;
 }
-a:hover {
-  @apply opacity-60 duration-200;
-}
 
 h1 {
   @apply text-6xl font-bold my-2;
@@ -49,3 +46,4 @@ span{
    hover:opacity-80 duration-200 rounded-full shadow p-3 my-5 cursor-pointer z-10 text-2xl
   top-1/2 transform -translate-y-1/2 hidden lg:block;
 }
+

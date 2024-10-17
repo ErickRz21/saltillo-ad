@@ -75,7 +75,7 @@ const NavBar = () => {
           Saltillo
         </Link>
 
-        <ul className="space-x-10 text-xl hidden lg:flex">
+        <ul className="space-x-24 pr-11 text-xl hidden lg:flex justify-center">
           <li>Menu</li>
           <li>Menu</li>
           <li>Menu</li>
@@ -203,6 +203,7 @@ const NavBar = () => {
                       </p>
 
                       {/* More Info Button */}
+                      <button>
                       <a
                         href={event.url}
                         target="_blank"
@@ -212,6 +213,7 @@ const NavBar = () => {
                       >
                         More info
                       </a>
+                      </button>
                     </div>
                   </li>
                 );

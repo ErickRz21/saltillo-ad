@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { FaBars, FaUser, FaSearch, FaTimes } from "react-icons/fa";
 import useTicketEvents from "../hooks/useTicket";
 import useFormatDate from "../hooks/useFormatDate";
+import Loading from "./Loading";
 
 const NavBar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -56,6 +57,7 @@ const NavBar = () => {
     >
       <div className="container mx-auto flex items-center justify-between px-6 lg:px-0 relative">
         {/* Mobile search and menu toggle */}
+
         <button
           onClick={() => {
             setSearchOpen(!searchOpen);
@@ -72,6 +74,14 @@ const NavBar = () => {
         >
           Saltillo
         </Link>
+
+        <ul className="space-x-10 text-xl hidden lg:flex">
+          <li>Menu</li>
+          <li>Menu</li>
+          <li>Menu</li>
+          <li>Menu</li>
+        </ul>
+
         <button
           onClick={() => setMenuOpen(!menuOpen)}
           className="lg:hidden"
@@ -145,8 +155,10 @@ const NavBar = () => {
         </div>
 
         {/* Display Loading, Error, and Search Results */}
-        {loading && <p className="text-center mt-2">Loading...</p>}
-        {error && <p className="text-center text-red-500 mt-2">{error}</p>}
+        {loading && (
+          <Loading/>
+        )}
+        {error && <p className="text-center text-red-500 font-bold mt-2">{error}</p>}
 
         <div className="mt-3">
           {events.length > 0 ? (

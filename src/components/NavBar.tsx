@@ -170,7 +170,7 @@ const NavBar = () => {
                 return (
                   <li
                     key={event.id}
-                    className="bg-white dark:bg-neutral-800 p-5 rounded-3xl border dark:border-neutral-800 shadow-md flex flex-col
+                    className="bg-neutral-100 dark:bg-neutral-800 p-5 rounded-3xl border dark:border-neutral-800 shadow-md flex flex-col
                     lg:flex-row items-center lg:items-start space-y-3 lg:space-y-0 lg:space-x-6"
                   >
                     {/* Event Image */}
@@ -183,35 +183,35 @@ const NavBar = () => {
                     </div>
 
                     {/* Event Details */}
-                    <div className="w-full lg:w-2/4">
-                      <h3 className="font-bold text-xl lg:text-2xl text-gray-800 dark:text-white mb-2">
+                    <div className="w-full lg:w-2/4 text-neutral-600 dark:text-neutral-300 font-semibold">
+                      <h3 className="font-extrabold text-xl lg:text-2xl text-gray-800 dark:text-white mb-2">
                         {event.name}
                       </h3>
-                      <p className="text-gray-600 dark:text-gray-300">
-                        <span className="font-semibold">Date:</span>{" "}
+                      <p>
+                        <span>Date:</span>{" "}
                         {formattedDate || "TBA"}
                       </p>
-                      <p className="text-gray-600 dark:text-gray-300">
-                        <span className="font-semibold">Venue:</span>{" "}
+                      <p>
+                        <span>Venue:</span>{" "}
                         {event._embedded?.venues[0]?.name || "TBA"}
                       </p>
-                      <p className="text-gray-600 dark:text-gray-300 mb-2">
-                        <span className="font-semibold">Price:</span>{" "}
+                      <p>
+                        <span>Price:</span>{" "}
                         {event.priceRanges
                           ? `${event.priceRanges[0].min} - ${event.priceRanges[0].max} ${event.priceRanges[0].currency}`
                           : "N/A"}
                       </p>
 
                       {/* More Info Button */}
-                      <button>
+                      <button className="my-5">
                       <a
                         href={event.url}
                         target="_blank"
                         rel="noreferrer"
-                        className="inline-block text-sm border-2 border-blue-600 text-blue-600 px-4 py-2 rounded-md
+                        className="text-sm border-2 border-blue-600 text-blue-600 px-3 py-2 rounded-md
                         hover:bg-blue-600 hover:text-white transition-colors duration-200"
                       >
-                        More info
+                        More Info
                       </a>
                       </button>
                     </div>

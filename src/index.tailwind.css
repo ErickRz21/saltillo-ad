@@ -38,7 +38,7 @@ h2{
 }
 
 span{
-  @apply font-semibold;
+  @apply font-bold;
 }
 
 #arrow{

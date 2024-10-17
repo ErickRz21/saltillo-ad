@@ -78,7 +78,7 @@ const EventCard: React.FC<EventCardProps> = ({ events }) => {
               key={event.id}
               className="min-w-[260px] max-w-[260px] lg:min-w-[325px] lg:max-w-[325px] h-[360px] lg:h-[420px]
               flex flex-col items-center justify-center shadow-md rounded-xl
-               bg-gradient-to-br from-indigo-300 to-white dark:to-black"
+              bg-white dark:bg-neutral-800"
             >
               {event.images && event.images[0] && (
                 <img

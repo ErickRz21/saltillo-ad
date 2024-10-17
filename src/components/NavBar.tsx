@@ -134,7 +134,7 @@ const NavBar = () => {
             ref={searchInputRef}
             onChange={(e) => setSearchQuery(e.target.value)}
             onKeyDown={handleEnterKey}
-            className="w-full p-3 mb-1 rounded-3xl bg-neutral-100 dark:bg-neutral-800
+            className="w-full py-3 px-5 mb-1 rounded-3xl bg-neutral-100 dark:bg-neutral-800
             opacity-70 focus:opacity-100 duration-500 text-black dark:text-white focus:outline-none
             font-semibold text-lg"
             placeholder="Search for events..."

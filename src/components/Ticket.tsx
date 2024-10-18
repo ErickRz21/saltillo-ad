@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import EventsByGenre from "./EventsGenre";
 
 const Ticket: React.FC = () => {

@@ -1,8 +1,8 @@
 import { useState } from "react";
 import useTicketEvents from "../hooks/useTicket";
-import EventCard from "./EventCard";
 import Loading from "./Loading";
 import { EventType } from "../types/EventType";
+import EventSlider from "./EventSlider";
 
 // Tabs configuration
 const tabs = [
@@ -49,7 +49,7 @@ const EventsByGenre = () => {
         {loading && <Loading />}
         {error && <p>Error: {error}</p>}
         {!loading && !error && data && data.length > 0 && (
-          <EventCard events={validEvents(data)} />
+          <EventSlider events={validEvents(data)} />
         )}
       </div>
     </div>

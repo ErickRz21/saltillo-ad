@@ -208,8 +208,7 @@ const NavBar = () => {
                         href={event.url}
                         target="_blank"
                         rel="noreferrer"
-                        className="text-sm border-2 border-blue-600 text-blue-600 px-3 py-2 rounded-md
-                        hover:bg-blue-600 hover:text-white transition-colors duration-200"
+                        id="more-info"
                       >
                         More Info
                       </a>

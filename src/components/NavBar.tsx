@@ -112,7 +112,7 @@ const NavBar = () => {
         ref={searchBarRef}
         className={`absolute ${
           searchOpen ? "opacity-100 scale-y-100" : "opacity-0 scale-y-0"
-        } my-3 lg:my-2 w-full lg:right-0 lg:w-2/4 h-[34rem] lg:h-[500px] bg-white dark:bg-neutral-900
+        } my-3 lg:my-2 w-full lg:right-0 lg:w-2/4 h-[34rem] lg:h-[40rem] bg-white dark:bg-neutral-900
         shadow-lg p-4 border dark:border-neutral-800 rounded-3xl z-50 overflow-y-auto transform transition-all duration-200
         ${
           searchOpen
@@ -135,7 +135,7 @@ const NavBar = () => {
             onChange={(e) => setSearchQuery(e.target.value)}
             onKeyDown={handleEnterKey}
             className="w-full py-3 px-5 mb-1 rounded-3xl bg-neutral-100 dark:bg-neutral-800
-            opacity-70 focus:opacity-100 duration-500 text-black dark:text-white focus:outline-none
+            opacity-70 focus:opacity-100 duration-500 text-black dark:text-white outline-none
             font-semibold text-lg"
             placeholder="Search for events..."
           />
@@ -147,7 +147,7 @@ const NavBar = () => {
               setSearchQuery(""); // Clear the search input
               // setSearchOpen(false); // Close the search bar
             }}
-            className="absolute right-4 text-neutral-600 dark:text-white focus:outline-none"
+            className="absolute right-4 text-neutral-600 dark:text-white"
             aria-label="Clear search"
           >
             <FaTimes size={18} />

@@ -6,6 +6,7 @@ type PriceRange = {
 };
 
 export type EventType = {
+  classifications: any;
   url?: string;
   priceRanges?: PriceRange[]; // Make priceRanges optional
   id: string;

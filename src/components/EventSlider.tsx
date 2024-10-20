@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+import React from "react";
 import { EventType } from "../types/EventType";
 import EventCard from "./EventCard";
 import useCarouselScroll from "../hooks/useSliderScroll";

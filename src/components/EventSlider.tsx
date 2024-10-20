@@ -8,8 +8,14 @@ interface EventSliderProps {
 }
 
 const EventSlider: React.FC<EventSliderProps> = ({ events }) => {
-  const {carouselRef, scroll }  = useCarouselScroll();
+  const { carouselRef, scroll } = useCarouselScroll();
 
+  // Sort events by date (earliest to latest)
+  const sortedEvents = [...events].sort((a, b) => {
+    const dateA = new Date(a.dates.start.localDate).getTime();
+    const dateB = new Date(b.dates.start.localDate).getTime();
+    return dateA - dateB;
+  });
 
   return (
     <div className="relative flex items-center w-screen lg:w-full">
@@ -19,7 +25,7 @@ const EventSlider: React.FC<EventSliderProps> = ({ events }) => {
         w-screen snap-center justify-start mx-auto px-[15.3%] lg:px-3 py-5"
         ref={carouselRef}
       >
-        {events.map((event) => (
+        {sortedEvents.map((event) => (
           <EventCard key={event.id} event={event} />
         ))}
       </div>

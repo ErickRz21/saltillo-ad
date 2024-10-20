@@ -22,7 +22,7 @@ const SearchResults: React.FC<SearchResultsProps> = ({
 
   if (events.length === 0) {
     return (
-      <p className="text-center text-gray-500 mt-4">
+      <p className="text-center text-gray-500 font-bold text-lg mt-4">
         No events found matching your search.
       </p>
     );

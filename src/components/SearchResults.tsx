@@ -7,6 +7,8 @@ interface SearchResultsProps {
   events: any[]; // Adjust the type according to your event structure
 }
 
+  
+
 const SearchResults: React.FC<SearchResultsProps> = ({
   loading,
   error,
@@ -28,9 +30,16 @@ const SearchResults: React.FC<SearchResultsProps> = ({
     );
   }
 
+  // Sort events by date (earliest to latest)
+  const sortedEvents = [...events].sort((a, b) => {
+    const dateA = new Date(a.dates.start.localDate).getTime();
+    const dateB = new Date(b.dates.start.localDate).getTime();
+    return dateA - dateB;
+  });
+
   return (
     <ul className="space-y-4 mt-3">
-      {events.map((event) => {
+      {sortedEvents.map((event) => {
         const { localDate, localTime } = event.dates.start;
         const formattedDate = useFormatDate(localDate, localTime);
 
@@ -50,7 +59,7 @@ const SearchResults: React.FC<SearchResultsProps> = ({
             </div>
 
             {/* Event Details */}
-            <div className="w-full lg:w-2/4 text-neutral-600 dark:text-neutral-300 font-semibold">
+            <div className="w-full lg:w-3/5 text-neutral-600 dark:text-neutral-300 font-semibold">
               <h3 className="font-extrabold text-xl lg:text-2xl text-gray-800 dark:text-white mb-2">
                 {event.name}
               </h3>

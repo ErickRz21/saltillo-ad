@@ -14,17 +14,17 @@ const EventCard: React.FC<EventCardProps> = ({ event }) => {
   return (
     <div
       className="min-w-[260px] max-w-[260px] lg:min-w-[325px] lg:max-w-[325px] h-[360px] lg:h-[420px]
-      flex flex-col items-center justify-center shadow-md rounded-xl
+      flex flex-col items-center justify-center shadow-md rounded-2xl
       bg-white dark:bg-neutral-800"
     >
       {event.images && event.images[0] && (
         <img
-          className="w-full h-full object-cover rounded-t-xl"
+          className="w-full h-full object-cover rounded-t-2xl"
           src={event.images[0].url}
           alt={event.name}
         />
       )}
-      <div className="px-5 py-1 lg:py-2 w-full text-neutral-700 dark:text-white text-sm text-center font-semibold">
+      <div className="px-5 py-1 lg:py-2 w-full text-neutral-700 dark:text-white text-sm lg:text-base text-center font-semibold">
         <div className="font-extrabold text-base lg:text-lg mb-1 text-center text-indigo-600 dark:text-indigo-400">
           {event.name}
         </div>

@@ -21,7 +21,7 @@ const EventSlider: React.FC<EventSliderProps> = ({ events }) => {
     <div className="relative flex items-center w-screen lg:w-full">
       {/* Card Scroll div */}
       <div
-        className="flex gap-2 overflow-x-auto scroll-smooth cursor-grab
+        className="flex gap-3 overflow-x-auto scroll-smooth cursor-grab
         w-screen snap-center justify-start mx-auto px-[15.3%] lg:px-3 py-5"
         ref={carouselRef}
       >

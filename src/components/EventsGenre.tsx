@@ -35,7 +35,7 @@ const EventsByGenre = () => {
           <button
             key={tab.keyword}
             onClick={() => setActiveTab(tab.keyword)}
-            className={activeTab === tab.keyword ? "font-bold duration-700 text-indigo-400" : ""}
+            className={activeTab === tab.keyword ? "font-bold duration-700 text-indigo-600 dark:text-indigo-400" : ""}
           >
             {tab.label}
           </button>

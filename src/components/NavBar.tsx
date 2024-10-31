@@ -71,7 +71,7 @@ const NavBar = () => {
           to="/"
           className="text-xl lg:text-2xl uppercase font-bold text-black dark:text-white"
         >
-          MONTERREY
+          EVENTS
         </Link>
 
         <ul className="space-x-24 pr-11 text-xl hidden lg:flex justify-center">

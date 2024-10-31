@@ -13,7 +13,7 @@ const EventCard: React.FC<EventCardProps> = ({ event }) => {
 
   return (
     <div
-      className="min-w-[260px] max-w-[260px] lg:min-w-[325px] lg:max-w-[325px] h-[360px] lg:h-[420px]
+      className="min-w-[280px] max-w-[280px] lg:min-w-[325px] lg:max-w-[325px] h-[400px] lg:h-[430px]
       flex flex-col items-center justify-center shadow-md rounded-2xl
       bg-white dark:bg-neutral-800"
     >
@@ -25,7 +25,7 @@ const EventCard: React.FC<EventCardProps> = ({ event }) => {
         />
       )}
       <div className="px-5 py-1 lg:py-2 w-full text-neutral-700 dark:text-white text-sm lg:text-base text-center font-semibold">
-        <div className="font-extrabold text-base lg:text-lg mb-1 text-center text-indigo-600 dark:text-indigo-400">
+        <div className="font-extrabold text-base lg:text-lg mb-1 text-center text-indigo-600 dark:text-indigo-400 overflow-ellipsis overflow-hidden whitespace-nowrap">
           {event.name}
         </div>
         <p>

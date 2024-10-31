@@ -28,13 +28,14 @@ const EventsByGenre = () => {
 
   return (
     <div>
+      <h2 className="flex justify-center">Search by genre</h2>
       {/* Tabs for selecting event categories */}
-      <div className="flex justify-center text-base lg:text-lg space-x-4 my-10">
+      <div className="flex justify-center text-lg lg:text-xl space-x-5 my-5 font-semibold">
         {tabs.map((tab) => (
           <button
             key={tab.keyword}
             onClick={() => setActiveTab(tab.keyword)}
-            className={activeTab === tab.keyword ? "font-bold" : ""}
+            className={activeTab === tab.keyword ? "font-bold duration-700 text-indigo-400" : ""}
           >
             {tab.label}
           </button>
@@ -42,10 +43,7 @@ const EventsByGenre = () => {
       </div>
 
       {/* Render Events based on active tab */}
-      <div className="my-5">
-        <h2 className="text-2xl font-bold text-center">
-          {tabs.find((tab) => tab.keyword === activeTab)?.label} Events
-        </h2>
+      <div>
         {loading && <Loading />}
         {error && <p>Error: {error}</p>}
         {!loading && !error && data && data.length > 0 && (

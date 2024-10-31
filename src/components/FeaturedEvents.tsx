@@ -4,7 +4,7 @@ import Loading from "./Loading";
 
 const FeaturedEvents = () => {
   // Utilize the hook with a specific keyword for fetching events in Monterrey
-  const { data: events, loading, error } = useTicketEvents("Music");
+  const { data: events, loading, error } = useTicketEvents("Mexico");
 
   if (loading) return <Loading />;
   if (error)
@@ -30,7 +30,7 @@ const FeaturedEvents = () => {
             <img
               src={event.images?.[0]?.url || "/placeholder.jpg"}
               alt={event.name}
-              className="h-64 lg:h-[450px] w-full object-cover duration-700 transform group-hover:scale-105"
+              className="h-72 lg:h-[450px] w-full object-cover duration-700 transform group-hover:scale-105"
             />
             {/* Overlayed Info */}
             <div

@@ -13,7 +13,7 @@ const App: React.FC = () => {
         {/* Events List */}
         <section className="mt-10 mb-20">
           <h2 className="text-center text-3xl font-bold">
-            Upcoming Events
+            Featured Events
           </h2>
           <Ticket /> {/* Using the EventsList component */}
         </section>

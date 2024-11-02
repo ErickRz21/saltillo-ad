@@ -49,6 +49,9 @@ span{
 
 #more-info{
   @apply text-sm font-bold border-2 border-black dark:border-white text-black dark:text-white
-   px-3 py-2 rounded-xl hover:bg-indigo-400 dark:hover:bg-indigo-600 duration-200;
+   px-3 py-2 rounded-xl hover:bg-indigo-400 duration-200;
 }
 
+#icon {
+  @apply hover:text-indigo-600 dark:hover:text-indigo-400 duration-300;
+}

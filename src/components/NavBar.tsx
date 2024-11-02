@@ -92,16 +92,15 @@ const NavBar = () => {
         {/* Desktop icons */}
         <div className="hidden lg:flex space-x-4 text-black dark:text-white items-center">
           <Link to="/">
-            <FaUser size={20} />
+            <FaUser size={20} id="icon" />
           </Link>
           <button
             onClick={() => {
               setSearchOpen(!searchOpen);
               if (searchOpen) setSearchOpen(false);
             }}
-            className="hover:text-neutral-600 duration-300"
           >
-            <FaSearch size={20} />
+            <FaSearch size={20} id="icon" />
           </button>
         </div>
       </div>

@@ -34,11 +34,12 @@ const FeaturedEvents = () => {
             />
             {/* Overlayed Info */}
             <div
-              className="absolute inset-0 flex flex-col justify-end items-center bg-black/40
+              className="absolute inset-0 flex flex-col justify-end items-center bg-black/20
              text-white px-4 pb-8 text-center duration-500 hover:bg-indigo-950/60 cursor-pointer"
+              id="overlay"
             >
-              <h2 className="text-xl lg:text-2xl">{event.name}</h2>
-              <p className="text-xl font-semibold">
+              <h2 className="text-2xl lg:text-4xl">{event.name}</h2>
+              <p className="text-lg lg:text-xl font-semibold">
                 {event._embedded?.venues?.[0]?.name || "Unknown Venue"}
               </p>
             </div>

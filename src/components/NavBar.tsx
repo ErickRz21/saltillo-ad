@@ -54,7 +54,7 @@ const NavBar = () => {
      bg-white dark:bg-neutral-900 py-4 rounded-3xl shadow-lg
       border dark:border-neutral-800"
     >
-      <div className="container mx-auto flex items-center justify-between px-6 lg:px-0 relative">
+      <div className="container mx-auto flex items-center justify-between px-6 lg:px-0 relative font-semibold">
         {/* Mobile search and menu toggle */}
 
         <button
@@ -69,16 +69,16 @@ const NavBar = () => {
         </button>
         <Link
           to="/"
-          className="text-xl lg:text-2xl uppercase font-bold text-black dark:text-white"
+          className="text-xl lg:text-2xl uppercase text-black dark:text-white"
         >
           EVENTS
         </Link>
 
-        <ul className="space-x-24 pr-11 text-xl hidden lg:flex justify-center">
-          <li>Menu</li>
-          <li>Menu</li>
-          <li>Menu</li>
-          <li>Menu</li>
+        <ul className="space-x-24 pr-11 text-xl hidden lg:flex justify-center capitalize">
+          <li>menu</li>
+          <li>menu</li>
+          <li>menu</li>
+          <li>menu</li>
         </ul>
 
         <button

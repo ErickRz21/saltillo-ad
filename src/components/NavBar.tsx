@@ -52,7 +52,7 @@ const NavBar = () => {
     <nav
       className="fixed bottom-0 mx-3 my-2 lg:my-0 left-0 right-0 lg:sticky lg:top-3 z-40
      bg-white dark:bg-neutral-900 py-4 rounded-3xl shadow-lg
-      border dark:border-neutral-800"
+      border-2 dark:border-neutral-800"
     >
       <div className="container mx-auto flex items-center justify-between px-6 lg:px-0 relative font-semibold">
         {/* Mobile search and menu toggle */}

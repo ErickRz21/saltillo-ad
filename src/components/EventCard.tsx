@@ -13,13 +13,13 @@ const EventCard: React.FC<EventCardProps> = ({ event }) => {
 
   return (
     <div
-      className="min-w-[280px] max-w-[280px] lg:min-w-[325px] lg:max-w-[325px] h-[400px] lg:h-[430px]
-      flex flex-col items-center justify-center shadow-md rounded-3xl
-      bg-white dark:bg-neutral-800"
+      className="min-w-[260px] max-w-[260px] lg:min-w-[300px] lg:max-w-[300px] h-[400px] lg:h-[430px]
+    flex flex-col items-center justify-center shadow-md rounded-3xl border border-neutral-200 dark:border-neutral-700
+    bg-white dark:bg-neutral-800 overflow-hidden"
     >
       {event.images && event.images[0] && (
         <img
-          className="w-full h-full object-cover rounded-t-3xl"
+          className="w-full h-full object-cover"
           src={event.images[0].url}
           alt={event.name}
         />

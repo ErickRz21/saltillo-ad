@@ -2,7 +2,7 @@ import React from "react";
 import EventsByGenre from "./EventsGenre";
 import FeaturedEvents from "./FeaturedEvents";
 
-const Ticket: React.FC = () => {
+const Main: React.FC = () => {
   return (
     <div>
       <FeaturedEvents />
@@ -11,4 +11,4 @@ const Ticket: React.FC = () => {
   );
 };
 
-export default Ticket;
+export default Main;

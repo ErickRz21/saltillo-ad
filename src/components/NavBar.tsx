@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { FaBars, FaUser, FaSearch, FaTimes } from "react-icons/fa";
-import useTicketEvents from "../hooks/useTicket";
+import useTicketEvents from "../hooks/useTicketData";
 import SearchResults from "./SearchResults";
 
 const NavBar = () => {

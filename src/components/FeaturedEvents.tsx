@@ -1,4 +1,4 @@
-import useTicketEvents from "../hooks/useTicket";
+import useTicketEvents from "../hooks/useTicketData";
 import { EventType } from "../types/EventType"; // Adjust the path based on your project structure
 import Loading from "./Loading";
 
@@ -17,6 +17,7 @@ const FeaturedEvents = () => {
 
   return (
     <div className="container mx-auto px-4 py-8">
+      <h2 className="text-center text-3xl font-bold my-10">Featured Events</h2>
       {/* Main Grid Section */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
         {displayedEvents.map((event: EventType) => (

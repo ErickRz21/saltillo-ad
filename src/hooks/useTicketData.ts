@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback } from 'react';
 import { EventType } from '../types/EventType';
 
 // Custom Hook for fetching events by keyword or genre
-const useTicketEvents = (keyword: string) => {
+const useTicketData = (keyword: string) => {
   const [data, setData] = useState<EventType[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
@@ -58,4 +58,4 @@ const useTicketEvents = (keyword: string) => {
   return { data, loading, error, fetchEvents };
 };
 
-export default useTicketEvents;
+export default useTicketData;

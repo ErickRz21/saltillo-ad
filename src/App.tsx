@@ -9,7 +9,7 @@ const App: React.FC = () => {
       {/* Navigation */}
       <NavBar /> {/* Using the NavBar component */}
       {/* Events List */}
-      <section className="mt-10 mb-20">
+      <section className="mb-20">
         <Main /> {/* Using the EventsList component */}
       </section>
     </div>

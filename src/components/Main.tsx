@@ -1,12 +1,14 @@
 import React from "react";
 import EventsByGenre from "./EventsGenre";
 import FeaturedEvents from "./FeaturedEvents";
+import Home from "./home";
 
 const Main: React.FC = () => {
   return (
     <div>
-      <FeaturedEvents />
-      <EventsByGenre />
+      <Home />
+        <FeaturedEvents />
+        <EventsByGenre />
     </div>
   );
 };

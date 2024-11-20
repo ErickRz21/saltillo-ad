@@ -24,10 +24,6 @@ body {
   font-family: 'Manrope', sans-serif;
 }
 
-a {
-  @apply text-sm lg:text-lg font-semibold text-black dark:text-white;
-}
-
 h1 {
   @apply text-6xl font-bold my-2;
 }
@@ -52,7 +48,7 @@ span{
 }
 
 #icon {
-  @apply hover:text-indigo-600 dark:hover:text-indigo-400 duration-300;
+  @apply text-3xl hover:text-indigo-600 dark:hover:text-indigo-400 duration-300;
 }
 
 #overlay{

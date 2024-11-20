@@ -1,7 +1,8 @@
 import React from "react";
 import EventsByGenre from "./EventsGenre";
 import FeaturedEvents from "./FeaturedEvents";
-import Home from "./home";
+import Home from "./Home";
+import Footer from "./footer";
 
 const Main: React.FC = () => {
   return (
@@ -9,6 +10,7 @@ const Main: React.FC = () => {
       <Home />
         <FeaturedEvents />
         <EventsByGenre />
+        <Footer />
     </div>
   );
 };

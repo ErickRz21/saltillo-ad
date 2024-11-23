@@ -36,19 +36,20 @@ const EventCard: React.FC<EventCardProps> = ({ event }) => {
             <span>Venue:</span> {event._embedded.venues[0].name}
           </p>
         )}
-        {event.priceRanges && event.priceRanges.length > 0 && (
-          <p>
-            <span>Price: </span>
-            {event.priceRanges && event.priceRanges.length > 0 ? (
-              <>
-                ${event.priceRanges[0].min} - ${event.priceRanges[0].max}{" "}
-                {event.priceRanges[0].currency}
-              </>
-            ) : (
-              <span>Price not available</span>
-            )}
-          </p>
-        )}
+        <p>
+          <span>Price: </span>
+          {event.priceRanges &&
+          event.priceRanges.length > 0 &&
+          typeof event.priceRanges[0].min === "number" &&
+          typeof event.priceRanges[0].max === "number" ? (
+            <>
+              ${event.priceRanges[0].min} - ${event.priceRanges[0].max}{" "}
+              {event.priceRanges[0].currency || ""}
+            </>
+          ) : (
+            "N/A"
+          )}
+        </p>
         <button className="flex justify-end my-3 w-full">
           {event.url && (
             <a href={event.url} target="_blank" rel="noreferrer" id="more-info">

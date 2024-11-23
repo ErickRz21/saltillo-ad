@@ -36,6 +36,10 @@ span{
   @apply font-bold;
 }
 
+a{
+  @apply hover:text-indigo-600 hover:dark:text-indigo-400 duration-300;
+}
+
 #arrow{
   @apply absolute bg-white dark:bg-neutral-600 text-black opacity-60
    hover:opacity-80 duration-200 rounded-full shadow p-3 my-5 cursor-pointer z-10 text-2xl

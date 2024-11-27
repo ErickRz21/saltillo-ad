@@ -82,7 +82,7 @@ const NavBar = () => {
             <li key={genre.path} className="hover:scale-125 duration-300">
               <Link
                 to={`/category/${genre.path}`}
-                className="text-xl hover:text-indigo-600 dark:hover:text-indigo-400"
+                className="text-xl hover:text-indigo-600 dark:hover:text-indigo-400 focus:text-indigo-500"
               >
                 {genre.label}
               </Link>

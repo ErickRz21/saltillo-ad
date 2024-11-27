@@ -114,7 +114,6 @@ const Home = () => {
         </motion.h2>
         <motion.button
           id="more-info"
-          className="mt-4 px-6 py-2 bg-indigo-500 text-white rounded-lg"
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
         >

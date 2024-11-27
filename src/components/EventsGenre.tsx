@@ -9,7 +9,7 @@ const EventsByGenre: React.FC = () => {
   const { data: events, loading, error } = useTicketEvents(genre || "");
 
   return (
-    <div className="container mx-auto mt-5 mb-3 shadow-xl rounded-3xl">
+    <div className="container mx-auto my-8 shadow-xl rounded-3xl">
       <div className="border dark:border-neutral-800 rounded-3xl bg-white dark:bg-neutral-800/90 py-5">
         <h2 className="flex justify-center text-3xl mx-4 font-bold capitalize">
           {genre} Events

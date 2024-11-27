@@ -17,10 +17,10 @@ const FeaturedEvents = () => {
 
   return (
     <div
-      className="mx-auto px-3 py-5 border border-neutral-200 dark:border-neutral-800
-     rounded-3xl bg-neutral-100 dark:bg-neutral-800 shadow-xl"
+      className="container mx-auto px-3 py-5 border border-neutral-200 dark:border-neutral-800
+     rounded-3xl bg-white dark:bg-neutral-800 shadow-xl"
     >
-      <h2 className="text-center text-3xl font-bold mb-5">Featured Events</h2>
+      <h2 className="text-center text-3xl font-bold mb-2">Featured Events</h2>
       {/* Main Grid Section */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
         {displayedEvents.map((event: EventType) => (

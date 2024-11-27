@@ -21,8 +21,8 @@ const EventSlider: React.FC<EventSliderProps> = ({ events }) => {
     <div className="relative flex items-center w-full">
       {/* Card Scroll div */}
       <div
-        className="flex gap-3 overflow-x-auto scroll-smooth cursor-grab
-        w-screen snap-center justify-start mx-auto my-2 px-4 lg:px-3 py-2"
+        className="flex gap-2 overflow-x-auto scroll-smooth cursor-grab
+        w-screen snap-center justify-start mx-auto px-3 pb-2"
         ref={carouselRef}
       >
         {sortedEvents.map((event) => (

@@ -81,7 +81,7 @@ const NavBar = () => {
             <li key={genre.path} className="hover:scale-125 duration-300">
               <Link
                 to={`/category/${genre.path}`}
-                className="text-xl hover:text-indigo-500 dark:hover:text-indigo-300 focus:text-indigo-600 dark:focus:text-indigo-400 duration-300"
+                className="text-xl hover:text-indigo-600 dark:hover:text-indigo-400"
               >
                 {genre.label}
               </Link>
@@ -132,7 +132,7 @@ const NavBar = () => {
                   className="flex items-center space-x-3 w-full"
                 >
                   {/* Optional: Add Icons Here */}
-                  <span className="font-medium">{genre.label}</span>
+                  <span className="font-semibold">{genre.label}</span>
                 </Link>
               </li>
             ))}

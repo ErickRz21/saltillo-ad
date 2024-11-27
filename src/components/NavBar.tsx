@@ -58,7 +58,7 @@ const NavBar = () => {
 
   return (
     <nav
-      className="fixed bottom-0 mx-3 my-2 lg:my-0 left-0 right-0 lg:sticky lg:top-3 z-40
+      className="fixed bottom-0 mx-3 lg:mx-auto my-2 lg:my-0 lg:px-6 left-0 right-0 lg:sticky lg:top-3 z-40
      bg-white dark:bg-neutral-900 py-4 rounded-3xl shadow-lg
       border dark:border-neutral-800"
     >
@@ -73,7 +73,7 @@ const NavBar = () => {
         </button>
         <Link
           to="/"
-          className="text-xl lg:text-2xl uppercase text-black dark:text-white"
+          className="text-xl font-bold lg:text-2xl uppercase text-black dark:text-white"
         >
           EVENTS
         </Link>
@@ -120,7 +120,7 @@ const NavBar = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 20 }}
-            transition={{ duration: 0.3, ease: "easeInOut" }}
+            transition={{ duration: 0.2, ease: "easeInOut" }}
             className="absolute bottom-14 left-0 w-full bg-white dark:bg-neutral-900 dark:text-white 
         border border-neutral-200 dark:border-neutral-800
         flex flex-col items-start space-y-2 my-3 py-4 px-6 shadow-lg z-50 rounded-3xl"
@@ -155,7 +155,7 @@ const NavBar = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 20 }}
             transition={{
-              duration: 0.3,
+              duration: 0.2,
               ease: "easeInOut",
             }}
             className={`absolute ${

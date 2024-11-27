@@ -3,10 +3,10 @@ import { motion } from "framer-motion";
 const Home = () => {
   // Animation variants for the container
   const containerVariants = {
-    hidden: { opacity: 0, y: -50 },
+    hidden: { opacity: 0, x: -500 },
     visible: {
       opacity: 1,
-      y: 0,
+      x: 0,
       transition: { duration: 0.8, ease: "easeOut" },
     },
   };
@@ -25,7 +25,7 @@ const Home = () => {
         animate={{ opacity: 1 }}
         transition={{ delay: 0.5, duration: 1 }}
       >
-        This is a simple home page with Tailwind CSS animations.
+        This is a simple quick start template
       </motion.h2>
       <motion.button
         className="my-5"

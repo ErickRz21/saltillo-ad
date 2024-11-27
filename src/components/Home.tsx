@@ -46,7 +46,7 @@ const Home = () => {
           image: event.images?.[0]?.url || "/default-image.jpg", // Fallback image
           title: event.name,
         }))
-        .slice(0, 6); // Limit to 6 cards
+        .slice(0, 8); // Limit amount of cards
       setEventCards(mappedEvents);
     }
   }, [events]);
@@ -61,11 +61,11 @@ const Home = () => {
       {/* Event Cards Layout */}
       <div className="absolute w-full flex justify-between pointer-events-none">
         {/* Left side images */}
-        <div className="flex flex-col space-y-0">
-          {eventCards.slice(0, 3).map((event, index) => (
+        <div className="flex flex-col -space-y-10">
+          {eventCards.slice(0, 4).map((event, index) => (
             <motion.div
               key={index}
-              className="relative w-52 p-2 bg-white rounded-2xl shadow-lg flex flex-col items-center text-center mx-28 first:ml-0 last:ml-0"
+              className="w-52 mx-28 first:ml-0 last:ml-0"
               initial="hidden"
               animate="visible"
               variants={cardVariantsLeft}
@@ -74,19 +74,18 @@ const Home = () => {
               <img
                 src={event.image}
                 alt={event.title}
-                className="w-full h-40 object-cover rounded-2xl"
+                className="w-full h-40 object-cover rounded-2xl shadow-xl"
               />
-              <h3 className="text-lg font-semibold">{event.title}</h3>
             </motion.div>
           ))}
         </div>
 
         {/* Right side images */}
-        <div className="flex flex-col space-y-1">
-          {eventCards.slice(3).map((event, index) => (
+        <div className="flex flex-col -space-y-10">
+          {eventCards.slice(4).map((event, index) => (
             <motion.div
               key={index}
-              className="relative w-52 p-2 bg-white rounded-2xl shadow-lg flex flex-col items-center text-center -mx-28 first:mx-0 last:mx-0"
+              className="w-52 -mx-28 first:mx-0 last:mx-0"
               initial="hidden"
               animate="visible"
               variants={cardVariantsRight}
@@ -95,9 +94,8 @@ const Home = () => {
               <img
                 src={event.image}
                 alt={event.title}
-                className="w-full h-40 object-cover rounded-2xl"
+                className="w-full h-40 object-cover rounded-2xl shadow-xl"
               />
-              <h3 className="text-lg font-semibold">{event.title}</h3>
             </motion.div>
           ))}
         </div>

@@ -5,13 +5,11 @@ import NavBar from "./components/NavBar";
 
 const App: React.FC = () => {
   return (
-    <div className="App">
+    <div className="App mx-3 lg:mx-20">
       {/* Navigation */}
       <NavBar /> {/* Using the NavBar component */}
       {/* Events List */}
-      <section className="mb-20">
-        <Main /> {/* Using the EventsList component */}
-      </section>
+      <Main /> {/* Using the EventsList component */}
     </div>
   );
 };

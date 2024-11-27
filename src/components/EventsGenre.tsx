@@ -1,58 +1,21 @@
-import { useState } from "react";
+import React from "react";
+import { useParams } from "react-router-dom";
 import useTicketEvents from "../hooks/useTicketData";
+import EventSlider from "../components/EventSlider";
 import Loading from "./Loading";
-import { EventType } from "../types/EventType";
-import EventSlider from "./EventSlider";
 
-// Tabs configuration
-const tabs = [
-  { label: "Music & Festivals ", keyword: "music" },
-  { label: "Sports", keyword: "sports" },
-  { label: "Arts", keyword: "arts, theatre" },
-  { label: "Misc", keyword: "miscellaneous" },
-];
-
-// Helper function to validate and filter out events with missing fields
-const validEvents = (events: EventType[] | undefined): EventType[] => {
-  if (!events) return []; // Handle undefined events gracefully
-  return events.filter(
-    (event) => event.id && event.name && event.dates?.start?.localDate
-  );
-};
-
-const EventsByGenre = () => {
-  const [activeTab, setActiveTab] = useState(tabs[0].keyword);
-
-  // Fetch events based on the active tab
-  const { data, loading, error } = useTicketEvents(activeTab);
+const EventsByGenre: React.FC = () => {
+  const { genre } = useParams(); // Get the genre from the URL
+  const { data: events, loading, error } = useTicketEvents(genre || "");
 
   return (
-    <div>
-      <h2 className="flex justify-center">Search by genre</h2>
-      {/* Tabs for selecting event categories */}
-      <div className="flex justify-center text-lg lg:text-xl space-x-5 my-5 font-semibold">
-        {tabs.map((tab) => (
-          <button
-            key={tab.keyword}
-            onClick={() => setActiveTab(tab.keyword)}
-            className={
-              activeTab === tab.keyword
-                ? "font-bold duration-700 text-indigo-600 dark:text-indigo-400"
-                : ""
-            }
-          >
-            {tab.label}
-          </button>
-        ))}
-      </div>
-
-      {/* Render Events based on active tab */}
-      <div>
+    <div className="container mx-auto my-10">
+      <div className="border dark:border-neutral-800 rounded-3xl bg-neutral-50 dark:bg-neutral-800/90 py-5">
+        <h2 className="flex justify-center text-3xl mx-4 font-bold capitalize mb-4">{genre} Events</h2>
         {loading && <Loading />}
         {error && <p>Error: {error}</p>}
-        {!loading && !error && data && data.length > 0 && (
-          <EventSlider events={validEvents(data)} />
-        )}
+        {!loading && events?.length === 0 && <p className="text-red-500 mx-5 text-xl">No events found.</p>}
+        {!loading && events?.length > 0 && <EventSlider events={events} />}
       </div>
     </div>
   );

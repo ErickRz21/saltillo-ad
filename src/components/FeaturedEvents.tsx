@@ -16,8 +16,11 @@ const FeaturedEvents = () => {
   const displayedEvents = events.slice(0, 4);
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <h2 className="text-center text-3xl font-bold my-10">Featured Events</h2>
+    <div
+      className="mx-auto px-3 py-5 border border-neutral-200 dark:border-neutral-800
+     rounded-3xl bg-neutral-100 dark:bg-neutral-800 shadow-xl"
+    >
+      <h2 className="text-center text-3xl font-bold mb-5">Featured Events</h2>
       {/* Main Grid Section */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
         {displayedEvents.map((event: EventType) => (

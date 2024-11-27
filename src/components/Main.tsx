@@ -1,17 +1,21 @@
 import React from "react";
+import { Routes, Route } from "react-router-dom";
 import EventsByGenre from "./EventsGenre";
 import FeaturedEvents from "./FeaturedEvents";
 import Home from "./Home";
-import Footer from "./footer";
+import Footer from "./Footer";
 
 const Main: React.FC = () => {
   return (
-    <div>
-      <Home />
-        <FeaturedEvents />
-        <EventsByGenre />
-        <Footer />
-    </div>
+    <>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/events/:category" element={<EventsByGenre />} />
+        <Route path="/category/:genre" element={<EventsByGenre />} />
+      </Routes>
+      <FeaturedEvents />
+      <Footer />
+    </>
   );
 };
 

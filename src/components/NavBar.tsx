@@ -11,6 +11,13 @@ const NavBar = () => {
   const searchInputRef = useRef<HTMLInputElement>(null);
   const searchBarRef = useRef<HTMLDivElement>(null);
 
+  const genres = [
+    { label: "Music", path: "music" },
+    { label: "Sports", path: "sports" },
+    { label: "Arts", path: "arts" },
+    { label: "Misc", path: "miscellaneous" },
+  ];
+
   const {
     data: events,
     loading,
@@ -25,9 +32,9 @@ const NavBar = () => {
 
   const handleEnterKey = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
-      e.preventDefault(); // Prevent default form submission behavior
+      e.preventDefault();
       searchInputRef.current?.blur(); // Hide the keyboard
-      handleSearch(); // Optionally trigger the search
+      handleSearch(); // Trigger the search
     }
   };
 
@@ -56,12 +63,8 @@ const NavBar = () => {
     >
       <div className="container mx-auto flex items-center justify-between px-6 lg:px-0 relative font-semibold">
         {/* Mobile search and menu toggle */}
-
         <button
-          onClick={() => {
-            setSearchOpen(!searchOpen);
-            if (searchOpen) setSearchOpen(false);
-          }}
+          onClick={() => setSearchOpen(!searchOpen)}
           className="lg:hidden"
           aria-label="Toggle Search"
         >
@@ -73,12 +76,17 @@ const NavBar = () => {
         >
           EVENTS
         </Link>
-
-        <ul className="space-x-24 pr-11 text-xl hidden lg:flex justify-center capitalize">
-          <li>menu</li>
-          <li>menu</li>
-          <li>menu</li>
-          <li>menu</li>
+        <ul className="space-x-20 pr-20 hidden lg:flex justify-center capitalize">
+          {genres.map((genre) => (
+            <li key={genre.path} className="hover:scale-125 duration-300">
+              <Link
+                to={`/category/${genre.path}`}
+                className="text-xl hover:text-indigo-600 dark:hover:text-indigo-400 duration-300"
+              >
+                {genre.label}
+              </Link>
+            </li>
+          ))}
         </ul>
 
         <button
@@ -86,7 +94,11 @@ const NavBar = () => {
           className="lg:hidden"
           aria-label="Toggle Menu"
         >
-          <FaBars size={25} className="text-black dark:text-white" />
+          {menuOpen ? (
+            <FaTimes size={25} className="text-black dark:text-white" />
+          ) : (
+            <FaBars size={25} className="text-black dark:text-white" />
+          )}
         </button>
 
         {/* Desktop icons */}
@@ -94,18 +106,33 @@ const NavBar = () => {
           <Link to="/">
             <FaUser size={20} id="icon" />
           </Link>
-          <button
-            onClick={() => {
-              setSearchOpen(!searchOpen);
-              if (searchOpen) setSearchOpen(false);
-            }}
-          >
+          <button onClick={() => setSearchOpen(!searchOpen)}>
             <FaSearch size={20} id="icon" />
           </button>
         </div>
       </div>
 
-      {/* Search Bar for Mobile and Desktop */}
+      {/* Mobile Menu */}
+      {menuOpen && (
+        <ul
+          className="absolute bottom-16 left-0 w-full bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800
+          flex flex-col items-center space-y-4 my-1 py-6 capitalize shadow-lg z-50 rounded-3xl duration-300"
+        >
+          {genres.map((genre) => (
+            <li key={genre.path}>
+              <Link
+                to={`/category/${genre.path}`}
+                onClick={() => setMenuOpen(false)} // Close menu on link click
+                className="text-xl font-bold hover:text-indigo-600 dark:hover:text-indigo-400 duration-300"
+              >
+                {genre.label}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      )}
+
+      {/* Search Bar */}
       <div
         ref={searchBarRef}
         className={`absolute ${
@@ -137,22 +164,15 @@ const NavBar = () => {
             font-semibold text-lg"
             placeholder="Search for events..."
           />
-
-          {/* Clear Button */}
           <button
             type="button"
-            onClick={() => {
-              setSearchQuery(""); // Clear the search input
-              // setSearchOpen(false); // Close the search bar
-            }}
+            onClick={() => setSearchQuery("")}
             className="absolute right-4 text-neutral-600 dark:text-white"
             aria-label="Clear search"
           >
             <FaTimes size={18} />
           </button>
         </div>
-
-        {/* Display Search Results */}
         <SearchResults loading={loading} error={error} events={events} />
       </div>
     </nav>

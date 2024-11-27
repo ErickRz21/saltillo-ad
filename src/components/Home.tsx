@@ -59,7 +59,7 @@ const Home = () => {
       className="relative flex flex-col items-center justify-center min-h-screen"
     >
       {/* Event Cards Layout */}
-      <div className="absolute w-full flex justify-between pointer-events-none">
+      <div className="absolute w-full hidden lg:flex justify-between pointer-events-none">
         {/* Left side images */}
         <div className="flex flex-col -space-y-10">
           {eventCards.slice(0, 4).map((event, index) => (

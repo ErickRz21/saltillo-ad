@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { FaBars, FaUser, FaSearch, FaTimes } from "react-icons/fa";
 import useTicketEvents from "../hooks/useTicketData";
 import SearchResults from "./SearchResults";
+import { AnimatePresence, motion } from "framer-motion";
 
 const NavBar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -113,32 +114,37 @@ const NavBar = () => {
       </div>
 
       {/* Mobile Menu */}
-      {menuOpen && (
-        <ul
-          className="absolute bottom-14 left-0 w-full bg-white dark:bg-neutral-900 dark:text-white 
-          border border-neutral-200 dark:border-neutral-800
-          flex flex-col items-start space-y-2 my-3 py-4 px-6 shadow-lg z-50 rounded-3xl duration-300"
-        >
-          <div className=" bg-neutral-100 dark:bg-neutral-800 border rounded-2xl dark:border-neutral-800 w-full my-2 px-4">
-            {genres.map((genre) => (
-              <li
-                key={genre.path}
-                className="flex items-center justify-start w-full text-base border-b last:border-b-0
-                 dark:border-neutral-700 px-0 py-2.5 duration-300"
-              >
-                <Link
-                  to={`/category/${genre.path}`}
-                  onClick={() => setMenuOpen(false)} // Close menu on link click
-                  className="flex items-center space-x-3 w-full"
+      <AnimatePresence>
+        {menuOpen && (
+          <motion.ul
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 20 }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+            className="absolute bottom-14 left-0 w-full bg-white dark:bg-neutral-900 dark:text-white 
+        border border-neutral-200 dark:border-neutral-800
+        flex flex-col items-start space-y-2 my-3 py-4 px-6 shadow-lg z-50 rounded-3xl"
+          >
+            <div className=" bg-neutral-100 dark:bg-neutral-800 border rounded-2xl dark:border-neutral-800 w-full my-2 px-4">
+              {genres.map((genre) => (
+                <li
+                  key={genre.path}
+                  className="flex items-center justify-start w-full text-base border-b last:border-b-0
+           dark:border-neutral-700 px-0 py-2.5 duration-300"
                 >
-                  {/* Optional: Add Icons Here */}
-                  <span className="font-semibold">{genre.label}</span>
-                </Link>
-              </li>
-            ))}
-          </div>
-        </ul>
-      )}
+                  <Link
+                    to={`/category/${genre.path}`}
+                    onClick={() => setMenuOpen(false)} // Close menu on link click
+                    className="flex items-center space-x-3 w-full"
+                  >
+                    <span className="font-semibold">{genre.label}</span>
+                  </Link>
+                </li>
+              ))}
+            </div>
+          </motion.ul>
+        )}
+      </AnimatePresence>
 
       {/* Search Bar */}
       <div

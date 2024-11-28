@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { FaBars, FaUser, FaSearch, FaTimes } from "react-icons/fa";
+import { FaBars, FaSearch, FaTimes, FaCalendarAlt } from "react-icons/fa";
 import useTicketEvents from "../hooks/useTicketData";
 import SearchResults from "./SearchResults";
 import { AnimatePresence, motion } from "framer-motion";
@@ -104,8 +104,8 @@ const NavBar = () => {
 
         {/* Desktop icons */}
         <div className="hidden lg:flex space-x-4 text-black dark:text-white items-center">
-          <Link to="/">
-            <FaUser size={20} id="icon" />
+          <Link to="/calendar">
+            <FaCalendarAlt size={20} id="icon" />
           </Link>
           <button onClick={() => setSearchOpen(!searchOpen)}>
             <FaSearch size={20} id="icon" />

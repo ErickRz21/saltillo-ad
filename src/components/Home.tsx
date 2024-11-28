@@ -107,9 +107,9 @@ const Home = () => {
 
           {/* Main content */}
           <div className="z-10 text-center items-center">
-            <h1 className="text-4xl font-bold">Welcome to the Home Page</h1>
+            <h1>Welcome to the Home Page</h1>
             <motion.h2
-              className="text-indigo-600 dark:text-indigo-400"
+              className="text-indigo-600 dark:text-indigo-400 text-4xl"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.5, duration: 1 }}

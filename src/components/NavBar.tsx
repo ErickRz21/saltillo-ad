@@ -77,12 +77,12 @@ const NavBar = () => {
         >
           EVENTS
         </Link>
-        <ul className="space-x-20 pr-20 hidden lg:flex justify-center capitalize">
+        <ul className="space-x-20 pr-16 hidden lg:flex justify-center capitalize">
           {genres.map((genre) => (
             <li key={genre.path} className="hover:scale-125 duration-300">
               <Link
                 to={`/category/${genre.path}`}
-                className="text-xl hover:text-indigo-600 dark:hover:text-indigo-400 focus:text-indigo-500"
+                className="text-xl font-semibold hover:text-indigo-600 dark:hover:text-indigo-400 focus:text-indigo-500"
               >
                 {genre.label}
               </Link>

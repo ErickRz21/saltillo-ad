@@ -57,12 +57,8 @@ const NavBar = () => {
   }, [searchOpen]);
 
   return (
-    <nav
-      className="fixed bottom-0 mx-3 lg:mx-auto my-2 lg:my-0 lg:px-6 left-0 right-0 lg:sticky lg:top-3 z-40
-     bg-white dark:bg-neutral-900 py-4 rounded-3xl shadow-lg
-      border dark:border-neutral-800"
-    >
-      <div className="container mx-auto flex items-center justify-between px-6 lg:px-0 relative font-semibold">
+    <nav className="fixed bottom-0 left-0 right-0 z-40 mx-3 my-2 rounded-3xl border bg-white py-4 shadow-lg lg:sticky lg:top-3 lg:mx-auto lg:my-0 lg:px-6 dark:border-neutral-800 dark:bg-neutral-900">
+      <div className="container relative mx-auto flex items-center justify-between px-6 font-semibold lg:px-0">
         {/* Mobile search and menu toggle */}
         <button
           onClick={() => setSearchOpen(!searchOpen)}
@@ -73,16 +69,16 @@ const NavBar = () => {
         </button>
         <Link
           to="/"
-          className="text-xl font-bold lg:text-2xl uppercase text-black dark:text-white"
+          className="text-xl font-bold uppercase text-black lg:text-2xl dark:text-white"
         >
           EVENTS
         </Link>
-        <ul className="space-x-20 pr-16 hidden lg:flex justify-center capitalize">
+        <ul className="hidden justify-center space-x-20 pr-16 capitalize lg:flex">
           {genres.map((genre) => (
-            <li key={genre.path} className="hover:scale-125 duration-300">
+            <li key={genre.path} className="duration-300 hover:scale-125">
               <Link
                 to={`/category/${genre.path}`}
-                className="text-xl font-semibold hover:text-indigo-600 dark:hover:text-indigo-400 focus:text-indigo-500"
+                className="text-xl font-semibold hover:text-indigo-600 focus:text-indigo-500 dark:hover:text-indigo-400"
               >
                 {genre.label}
               </Link>
@@ -103,7 +99,7 @@ const NavBar = () => {
         </button>
 
         {/* Desktop icons */}
-        <div className="hidden lg:flex space-x-4 text-black dark:text-white items-center">
+        <div className="hidden items-center space-x-4 text-black lg:flex dark:text-white">
           <Link to="/calendar">
             <FaCalendarAlt size={20} id="icon" />
           </Link>
@@ -121,21 +117,18 @@ const NavBar = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 20 }}
             transition={{ duration: 0.2, ease: "easeInOut" }}
-            className="absolute bottom-14 left-0 w-full bg-white dark:bg-neutral-900 dark:text-white 
-        border border-neutral-200 dark:border-neutral-800
-        flex flex-col items-start space-y-2 my-3 py-4 px-6 shadow-lg z-50 rounded-3xl"
+            className="absolute bottom-14 left-0 z-50 my-3 flex w-full flex-col items-start space-y-2 rounded-3xl border border-neutral-200 bg-white px-6 py-4 shadow-lg dark:border-neutral-800 dark:bg-neutral-900 dark:text-white"
           >
-            <div className=" bg-neutral-100 dark:bg-neutral-800 border rounded-2xl dark:border-neutral-800 w-full my-2 px-4">
+            <div className="my-2 w-full rounded-2xl border bg-neutral-100 px-4 dark:border-neutral-800 dark:bg-neutral-800">
               {genres.map((genre) => (
                 <li
                   key={genre.path}
-                  className="flex items-center justify-start w-full text-base border-b last:border-b-0
-           dark:border-neutral-700 px-0 py-2.5 duration-300"
+                  className="flex w-full items-center justify-start border-b px-0 py-2.5 text-base duration-300 last:border-b-0 dark:border-neutral-700"
                 >
                   <Link
                     to={`/category/${genre.path}`}
                     onClick={() => setMenuOpen(false)} // Close menu on link click
-                    className="flex items-center space-x-3 w-full"
+                    className="flex w-full items-center space-x-3"
                   >
                     <span className="font-semibold">{genre.label}</span>
                   </Link>
@@ -159,32 +152,28 @@ const NavBar = () => {
               ease: "easeInOut",
             }}
             className={`absolute ${
-              searchOpen ? "opacity-100 scale-y-100" : "opacity-0 scale-y-0"
-            } my-3 lg:my-2 w-full lg:right-0 lg:w-2/4 h-[34rem] lg:h-[40rem] bg-white dark:bg-neutral-900
-        shadow-lg p-4 border dark:border-neutral-800 rounded-3xl z-50 overflow-y-auto transform transition-all duration-200
-        ${
-          searchOpen
-            ? window.innerWidth >= 1024
-              ? "top-16"
-              : "bottom-14"
-            : window.innerWidth >= 1024
-            ? "top-16"
-            : "bottom-14"
-        }`}
+              searchOpen ? "scale-y-100 opacity-100" : "scale-y-0 opacity-0"
+            } z-50 my-3 h-[34rem] w-full transform overflow-y-auto rounded-3xl border bg-white p-4 shadow-lg transition-all duration-200 lg:right-0 lg:my-2 lg:h-[40rem] lg:w-2/4 dark:border-neutral-800 dark:bg-neutral-900 ${
+              searchOpen
+                ? window.innerWidth >= 1024
+                  ? "top-16"
+                  : "bottom-14"
+                : window.innerWidth >= 1024
+                  ? "top-16"
+                  : "bottom-14"
+            }`}
             style={{
               transformOrigin: window.innerWidth >= 1024 ? "top" : "bottom",
             }}
           >
-            <div className="flex items-center sticky top-0">
+            <div className="sticky top-0 flex items-center">
               <input
                 type="text"
                 value={searchQuery}
                 ref={searchInputRef}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 onKeyDown={handleEnterKey}
-                className="w-full py-3 px-5 mb-1 rounded-3xl bg-neutral-100 dark:bg-neutral-800
-          opacity-70 focus:opacity-100 duration-500 text-black dark:text-white outline-none
-          font-semibold text-lg"
+                className="mb-1 w-full rounded-3xl border border-transparent bg-neutral-100 px-5 py-3 text-lg font-semibold text-black outline-none backdrop-blur-sm duration-500 focus:border-indigo-500 focus:bg-neutral-800 dark:bg-neutral-800/70 dark:text-white"
                 placeholder="Search for events..."
               />
               <button

@@ -7,8 +7,6 @@ interface SearchResultsProps {
   events: any[]; // Adjust the type according to your event structure
 }
 
-  
-
 const SearchResults: React.FC<SearchResultsProps> = ({
   loading,
   error,
@@ -19,12 +17,12 @@ const SearchResults: React.FC<SearchResultsProps> = ({
   }
 
   if (error) {
-    return <p className="text-center text-red-500 font-bold mt-2">{error}</p>;
+    return <p className="mt-2 text-center font-bold text-red-500">{error}</p>;
   }
 
   if (events.length === 0) {
     return (
-      <p className="text-center text-gray-500 font-bold text-lg mt-4">
+      <p className="mt-4 text-center text-lg font-bold text-gray-500">
         No events found matching your search.
       </p>
     );
@@ -38,7 +36,7 @@ const SearchResults: React.FC<SearchResultsProps> = ({
   });
 
   return (
-    <ul className="space-y-4 mt-3">
+    <ul className="mt-3 space-y-4">
       {sortedEvents.map((event) => {
         const { localDate, localTime } = event.dates.start;
         const formattedDate = useFormatDate(localDate, localTime);
@@ -46,21 +44,21 @@ const SearchResults: React.FC<SearchResultsProps> = ({
         return (
           <li
             key={event.id}
-            className="bg-neutral-100 dark:bg-neutral-800 p-5 rounded-3xl border dark:border-neutral-800 shadow-md flex flex-col
-            lg:flex-row items-center lg:items-start space-y-3 lg:space-y-0 lg:space-x-6"
+            className="flex flex-col items-center space-y-3 rounded-3xl border bg-neutral-100 p-5 shadow-md lg:flex-row lg:items-start lg:space-x-6 lg:space-y-0 dark:border-neutral-800 dark:bg-neutral-800"
           >
             {/* Event Image */}
             <div className="w-full lg:w-3/5">
               <img
                 src={event.images?.[0]?.url}
                 alt={event.name}
-                className="w-full h-52 lg:h-64 object-cover rounded-2xl border dark:border-neutral-600 shadow"
+                className="h-52 w-full rounded-2xl border object-cover shadow lg:h-64 dark:border-neutral-600"
+                loading="lazy"
               />
             </div>
 
             {/* Event Details */}
-            <div className="w-full lg:w-3/5 text-neutral-600 dark:text-neutral-300 font-semibold">
-              <h3 className="font-extrabold text-xl lg:text-2xl text-gray-800 dark:text-white mb-2">
+            <div className="w-full font-semibold text-neutral-600 lg:w-3/5 dark:text-neutral-300">
+              <h3 className="mb-2 text-xl font-extrabold text-gray-800 lg:text-2xl dark:text-white">
                 {event.name}
               </h3>
               <p>

@@ -12,20 +12,17 @@ const EventCard: React.FC<EventCardProps> = ({ event }) => {
   const formattedDate = useFormatDate(localDate, localTime);
 
   return (
-    <div
-      className="min-w-[260px] max-w-[260px] lg:min-w-[300px] lg:max-w-[300px] h-[400px] lg:h-[430px]
-      flex flex-col items-center justify-center shadow-md rounded-3xl border border-neutral-200 dark:border-neutral-700
-    bg-white dark:bg-neutral-800 overflow-hidden"
-    >
+    <div className="flex h-[400px] min-w-[260px] max-w-[260px] flex-col items-center justify-center overflow-hidden rounded-3xl border border-neutral-200 bg-white shadow-md lg:h-[430px] lg:min-w-[300px] lg:max-w-[300px] dark:border-neutral-700 dark:bg-neutral-800">
       {event.images && event.images[0] && (
         <img
-          className="w-full h-full object-cover"
+          className="h-full w-full object-cover"
           src={event.images[0].url}
           alt={event.name}
+          loading="lazy"
         />
       )}
-      <div className="px-5 py-1 lg:py-2 w-full text-neutral-700 dark:text-white text-sm lg:text-base text-center font-semibold">
-        <div className="font-extrabold text-base lg:text-lg text-center text-indigo-600 dark:text-indigo-400 overflow-ellipsis overflow-hidden whitespace-nowrap">
+      <div className="w-full px-5 py-1 text-center text-sm font-semibold text-neutral-700 lg:py-2 lg:text-base dark:text-white">
+        <div className="overflow-hidden overflow-ellipsis whitespace-nowrap text-center text-base font-extrabold text-indigo-600 lg:text-lg dark:text-indigo-400">
           {event.name}
         </div>
         <p>
@@ -50,7 +47,7 @@ const EventCard: React.FC<EventCardProps> = ({ event }) => {
             "N/A"
           )}
         </p>
-        <button className="flex justify-end my-3 w-full">
+        <button className="my-3 flex w-full justify-end">
           {event.url && (
             <a href={event.url} target="_blank" rel="noreferrer" id="more-info">
               More info

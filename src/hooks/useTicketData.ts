@@ -1,5 +1,5 @@
-import { useState, useEffect, useCallback } from 'react';
-import { EventType } from '../types/EventType';
+import { useState, useEffect, useCallback } from "react";
+import { EventType } from "../types/EventType";
 
 // Custom Hook for fetching events by keyword or genre
 const useTicketData = (keyword: string) => {
@@ -17,22 +17,26 @@ const useTicketData = (keyword: string) => {
 
     try {
       if (!API_KEY) {
-        throw new Error("Missing API Key. Make sure VITE_TICKETMASTER_API_KEY is defined in your .env file.");
+        throw new Error(
+          "Missing API Key. Make sure VITE_TICKETMASTER_API_KEY is defined in your .env file.",
+        );
       }
 
-      const BASE_URL = 'https://app.ticketmaster.com/discovery/v2/events';
-      const LAT_LONG = '25.67507,-100.31847'; // Monterrey latitude and longitude
+      const BASE_URL = "https://app.ticketmaster.com/discovery/v2/events";
+      const LAT_LONG = "25.67507,-100.31847"; // Monterrey latitude and longitude
       const RADIUS = 30; // Increase radius in kilometers to get more events
 
-      const keywordParam = keyword ? `&keyword=${encodeURIComponent(keyword)}` : '';
+      const keywordParam = keyword
+        ? `&keyword=${encodeURIComponent(keyword)}`
+        : "";
       const url = `${BASE_URL}?apikey=${API_KEY}&latlong=${LAT_LONG}&radius=${RADIUS}&unit=km&countryCode=MX${keywordParam}`;
 
       const response = await fetch(url);
       if (!response.ok) {
         if (response.status === 429) {
-          throw new Error('Too many requests - Rate limit exceeded');
+          throw new Error("Too many requests - Rate limit exceeded");
         }
-        throw new Error('Network response was not ok');
+        throw new Error("Network response was not ok");
       }
 
       const result = await response.json();

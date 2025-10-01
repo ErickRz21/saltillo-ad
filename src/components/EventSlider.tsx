@@ -18,11 +18,10 @@ const EventSlider: React.FC<EventSliderProps> = ({ events }) => {
   });
 
   return (
-    <div className="relative flex items-center w-full">
+    <div className="relative flex w-full items-center">
       {/* Card Scroll div */}
       <div
-        className="flex gap-2 overflow-x-auto scroll-smooth cursor-grab
-        w-screen snap-center justify-start mx-auto px-3 pb-2"
+        className="mx-auto flex w-screen cursor-grab snap-center justify-start gap-2 overflow-x-auto scroll-smooth px-3 pb-2"
         ref={carouselRef}
       >
         {sortedEvents.map((event) => (
@@ -33,7 +32,7 @@ const EventSlider: React.FC<EventSliderProps> = ({ events }) => {
       {/* Arrow Buttons */}
       <button id="arrow" className="left-5" onClick={() => scroll("left")}>
         <svg
-          className="w-4 h-4"
+          className="h-4 w-4"
           aria-hidden="true"
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -52,7 +51,7 @@ const EventSlider: React.FC<EventSliderProps> = ({ events }) => {
 
       <button id="arrow" className="right-5" onClick={() => scroll("right")}>
         <svg
-          className="w-4 h-4"
+          className="h-4 w-4"
           aria-hidden="true"
           xmlns="http://www.w3.org/2000/svg"
           fill="none"

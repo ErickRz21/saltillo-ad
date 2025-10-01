@@ -9,15 +9,15 @@ const EventsByGenre: React.FC = () => {
   const { data: events, loading, error } = useTicketEvents(genre || "");
 
   return (
-    <div className="container mx-auto my-8 shadow-xl rounded-3xl">
-      <div className="border dark:border-neutral-800 rounded-3xl bg-white dark:bg-neutral-800/90 py-5">
-        <h2 className="flex justify-center text-3xl mx-4 font-bold capitalize">
+    <div className="container mx-auto my-8 rounded-3xl shadow-xl">
+      <div className="rounded-3xl border bg-white py-5 dark:border-neutral-800 dark:bg-neutral-800/90">
+        <h2 className="mx-4 flex justify-center text-3xl font-bold capitalize">
           {genre} Events
         </h2>
         {loading && <Loading />}
         {error && <p>Error: {error}</p>}
         {!loading && events?.length === 0 && (
-          <p className="text-center text-red-500 font-bold text-xl my-4">
+          <p className="my-4 text-center text-xl font-bold text-red-500">
             No events found.
           </p>
         )}

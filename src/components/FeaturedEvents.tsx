@@ -16,34 +16,30 @@ const FeaturedEvents = () => {
   const displayedEvents = events.slice(0, 4);
 
   return (
-    <div
-      className="container mx-auto px-3 py-5 border border-neutral-200 dark:border-neutral-800
-     rounded-3xl bg-white dark:bg-neutral-800 shadow-xl"
-    >
-      <h2 className="text-center text-3xl font-bold mb-2">Featured Events</h2>
+    <div className="container mx-auto rounded-3xl border border-neutral-200 bg-white px-3 py-5 shadow-xl dark:border-neutral-800 dark:bg-neutral-800">
+      <h2 className="mb-2 text-center text-3xl font-bold">Featured Events</h2>
       {/* Main Grid Section */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
+      <div className="grid grid-cols-1 gap-3 lg:grid-cols-2">
         {displayedEvents.map((event: EventType) => (
           <a
             key={event.id}
             href={event.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="relative group overflow-hidden rounded-3xl shadow-lg"
+            className="group relative overflow-hidden rounded-3xl shadow-lg"
           >
             <img
               src={event.images?.[0]?.url || "/placeholder.jpg"}
               alt={event.name}
-              className="h-72 lg:h-[450px] w-full object-cover duration-700 transform group-hover:scale-105"
+              className="h-72 w-full transform object-cover duration-700 group-hover:scale-105 lg:h-[450px]"
             />
             {/* Overlayed Info */}
             <div
-              className="absolute inset-0 flex flex-col justify-end items-center bg-black/20
-             text-white px-4 pb-8 text-center duration-500 hover:bg-indigo-950/60 cursor-pointer"
+              className="absolute inset-0 flex cursor-pointer flex-col items-center justify-end bg-black/20 px-4 pb-8 text-center text-white duration-500 hover:bg-indigo-950/60"
               id="overlay"
             >
               <h2 className="text-2xl lg:text-4xl">{event.name}</h2>
-              <p className="text-lg lg:text-xl font-semibold">
+              <p className="text-lg font-semibold lg:text-xl">
                 {event._embedded?.venues?.[0]?.name || "Unknown Venue"}
               </p>
             </div>
